@@ -1,0 +1,14 @@
+<template>
+  <div class="quartet" id="quartet"></div>
+</template>
+
+<style scoped lang="scss">
+@use '../../assets/base.scss' as *;
+
+.quartet {
+  background-color: $clr-secondary;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
+}
+</style>

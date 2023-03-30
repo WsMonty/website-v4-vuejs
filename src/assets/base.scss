@@ -1,0 +1,43 @@
+$clr-neutral-100: white;
+$clr-neutral-200: rgb(225, 225, 225);
+$clr-neutral-300: rgb(200, 200, 200);
+$clr-neutral-400: rgb(174, 174, 174);
+$clr-neutral-500: rgb(130, 130, 130);
+$clr-neutral-600: rgb(100, 100, 100);
+$clr-neutral-700: rgb(50, 50, 50);
+$clr-neutral-800: rgb(25, 25, 25);
+$clr-neutral-900: black;
+
+$clr-primary: rgb(138, 184, 176);
+$clr-secondary: rgb(219, 64, 122);
+
+$clr-som-purple: rgb(127, 127, 177);
+$clr-som-green: rgb(138, 184, 176);
+$clr-som-pink: rgb(219, 64, 122);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: $clr-secondary;
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: 'Helvetica Neue';
+  font-size: 15px;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hidden {
+  display: none !important;
+}
