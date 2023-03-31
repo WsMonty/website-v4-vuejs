@@ -1,14 +1,146 @@
+<script setup lang="ts">
+async function getNews() {
+  const query = `
+  query {
+  newsCollection {
+    items {
+      title
+      date
+      media {
+        url
+        title
+        description
+      }
+      newsText
+      link
+			mediaContent
+    }
+  }
+}
+`
+  const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${
+    import.meta.env.VITE_CONTENTFUL_SPACE_ID
+  }`
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query
+    })
+  }
+
+  const response = await fetch(fetchUrl, fetchOptions)
+    .then((response) => response.json())
+    .catch((err) => console.log(err))
+
+  return response.data.newsCollection.items
+}
+const news = await getNews()
+console.log(news)
+</script>
+
 <template>
-  <div class="news" id="news"></div>
+  <div class="news" id="news">
+    <div class="news_content">
+      <template v-for="(article, i) in news" :key="'article-nr' + i">
+        <div class="article" v-if="i < 3">
+          <h2>{{ article.title }}</h2>
+          <div class="article_wrapper">
+            <img
+              v-if="article.media"
+              class="article_image"
+              :src="article.media.url"
+              :alt="article.media.title"
+              width="300"
+            />
+            <p class="article_newsText">{{ article.newsText }}</p>
+          </div>
+          <div class="article_wrapper2">
+            <a class="article_link" :href="article.link" target="_blank"
+              >Click here for more info!</a
+            >
+            <iframe
+              v-if="article.mediaContent"
+              :src="article.mediaContent"
+              frameborder="0"
+              width="800"
+              height="400"
+            ></iframe>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
-@use '../../assets/base.scss' as *;
+@use '../../assets/styles/base.scss' as *;
 .news {
   background-color: $clr-primary;
   width: 100vw;
   height: 100vh;
 
   scroll-snap-align: start;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_content {
+    width: 70%;
+    height: 80%;
+    margin-block: 2em;
+    border: 1px solid $clr-blue-lighter;
+    border-radius: 20px;
+    padding: 2em;
+    overflow: auto;
+  }
+}
+
+.article {
+  padding: 2em;
+  border-bottom: 1px solid $clr-blue-lighter;
+  font-size: 1.2em;
+
+  &_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8em;
+    width: 70%;
+    margin-bottom: 2em;
+  }
+
+  &_wrapper2 {
+    display: flex;
+    align-items: center;
+    gap: 6em;
+    width: 100%;
+    margin-bottom: 2em;
+    padding-left: 3em;
+  }
+
+  h2 {
+    margin-bottom: 1em;
+    font-size: 3em;
+  }
+
+  &_newsText {
+    color: $clr-blue;
+  }
+
+  &_image {
+    border-radius: 20px;
+  }
+
+  iframe {
+    border-radius: 20px;
+  }
+
+  &_link {
+    white-space: nowrap;
+  }
 }
 </style>

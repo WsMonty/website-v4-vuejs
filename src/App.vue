@@ -4,16 +4,40 @@ import MusicView from './views/MusicView.vue'
 import DeveloperView from './views/DeveloperView.vue'
 import { useWorldStore } from './stores/world'
 import { storeToRefs } from 'pinia'
+import { reactive } from 'vue'
 
 // const state = reactive({})
 
 const store = useWorldStore()
 
 const { musicWorld, developerWorld } = storeToRefs(store)
+
+const state = reactive({ x: '', y: '', xN: 0, yN: 0 })
+
+function updateDotPosition(event: MouseEvent) {
+  state.xN = event.clientX
+  state.yN = event.clientY
+  state.x = event.clientX - 10 + 'px'
+  state.y = event.clientY - 10 + 'px'
+}
+
+// Add event listener to update the dot and afterglow positions on mousemove
+document.addEventListener('mousemove', updateDotPosition)
 </script>
 
 <template>
-  <MusicView :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }" />
+  <div class="dot" ref="dotRef" :style="{ top: state.y, left: state.x }"></div>
+
+  <Suspense>
+    <!-- main content -->
+    <MusicView
+      :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }"
+      ref="containerRef"
+    />
+
+    <!-- loading state -->
+    <template #fallback> Loading... </template>
+  </Suspense>
   <ul class="navbar" :class="{ hidden: developerWorld }">
     <li>
       <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
@@ -37,7 +61,7 @@ const { musicWorld, developerWorld } = storeToRefs(store)
 </template>
 
 <style scoped lang="scss">
-@use './assets/base.scss' as *;
+@use './assets/styles/base.scss' as *;
 .music--active {
   animation: slideInMusic 1000ms ease-in-out forwards;
 }
@@ -111,6 +135,21 @@ const { musicWorld, developerWorld } = storeToRefs(store)
 
   &--icon {
     color: $clr-secondary;
+
+    transition: color 150ms ease-in-out;
+
+    &:hover {
+      color: $clr-blue;
+    }
   }
+}
+.dot {
+  position: absolute;
+  background-color: $clr-blue;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  z-index: 999;
+  pointer-events: none;
 }
 </style>

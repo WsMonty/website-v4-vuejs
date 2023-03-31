@@ -21,7 +21,6 @@ function handleChangeWorld() {
     <button class="music_switch--btn" @click="handleChangeWorld">
       <v-icon class="music_switch--icon" name="co-chevron-double-right" scale="2" />
     </button>
-
     <NewsMusic />
     <QuartetMusic />
     <ConcertsMusic />
@@ -30,10 +29,11 @@ function handleChangeWorld() {
 </template>
 
 <style scoped lang="scss">
-@use '../assets/base.scss' as *;
+@use '../assets/styles/base.scss' as *;
 
 .music {
-  overflow: auto;
+  overflow-y: overlay;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
 
@@ -42,9 +42,10 @@ function handleChangeWorld() {
       background-color: transparent;
       border: none;
       width: 4em;
-      position: absolute;
+      position: sticky;
       top: 5%;
-      right: 5%;
+      float: right;
+      margin-right: 5%;
       z-index: 100;
     }
 

@@ -15,6 +15,12 @@ $clr-som-purple: rgb(127, 127, 177);
 $clr-som-green: rgb(138, 184, 176);
 $clr-som-pink: rgb(219, 64, 122);
 
+$clr-blue: rgb(29, 29, 104);
+$clr-blue-lighter: rgb(127, 127, 177);
+$clr-blue-intense: rgb(99, 50, 223);
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 *,
 *::before,
 *::after {
@@ -23,12 +29,12 @@ $clr-som-pink: rgb(219, 64, 122);
   padding: 0;
   position: relative;
   font-weight: normal;
+  cursor: none !important;
 }
 
 body {
   min-height: 100vh;
   color: $clr-secondary;
-  transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: 'Helvetica Neue';
   font-size: 15px;
@@ -38,6 +44,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body,
+html {
+  font-family: 'Quicksand', 'Helvetica-Neue';
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+}
+
 .hidden {
   display: none !important;
+}
+
+a {
+  color: $clr-blue;
+  text-decoration: none;
+
+  transition: 150ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+    color: $clr-blue-intense;
+  }
 }

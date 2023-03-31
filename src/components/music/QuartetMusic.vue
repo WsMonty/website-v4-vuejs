@@ -3,7 +3,7 @@
 </template>
 
 <style scoped lang="scss">
-@use '../../assets/base.scss' as *;
+@use '../../assets/styles/base.scss' as *;
 
 .quartet {
   background-color: $clr-secondary;

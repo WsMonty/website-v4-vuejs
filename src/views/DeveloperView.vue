@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// import { reactive } from 'vue'
-// const state = reactive({})
 import { useWorldStore } from '@/stores/world'
+import HomeDeveloper from '@/components/developer/HomeDeveloper.vue'
+
 const store = useWorldStore()
 const { hideDeveloperWorld, showMusicWorld } = store
 
@@ -16,16 +16,20 @@ function handleChangeWorld() {
     <button class="developer_switch--btn" @click="handleChangeWorld">
       <v-icon class="developer_switch--icon" name="co-chevron-double-left" scale="2" />
     </button>
+    <HomeDeveloper />
   </div>
 </template>
 
 <style scoped lang="scss">
-@use '../assets/base.scss' as *;
+@use '../assets/styles/base.scss' as *;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 .developer {
   width: 100vw;
   height: 100vh;
   background-color: $clr-secondary;
   color: $clr-primary;
+  font-family: 'Space Grotesk', sans-serif;
 
   &_switch {
     &--btn {

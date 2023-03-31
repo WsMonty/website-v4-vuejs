@@ -5,7 +5,7 @@ import { createPersistedStatePlugin } from 'pinia-plugin-persistedstate-2'
 import App from './App.vue'
 // import router from './router'
 
-import './assets/main.scss'
+import './assets/styles/main.scss'
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import {
   CoChevronDoubleRight,
