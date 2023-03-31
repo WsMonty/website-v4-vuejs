@@ -63,14 +63,22 @@ concerts.sort((a: IConcert, b: IConcert) => Number(new Date(a.date)) - Number(ne
 @use '../../assets/styles/base.scss' as *;
 
 .concerts {
-  background-color: $clr-primary;
+  background-color: $clr-secondary;
   width: 100%;
   height: 100%;
   scroll-snap-align: start;
+  color: $clr-primary;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  font-size: 1.5em;
+
+  h3 {
+    font-size: 1.5em;
+    font-weight: 800;
+  }
 
   &_content {
     width: 70%;

@@ -36,17 +36,11 @@ body {
   min-height: 100vh;
   color: $clr-secondary;
   line-height: 1.6;
-  font-family: 'Helvetica Neue';
   font-size: 15px;
   overflow: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body,
-html {
-  font-family: 'Quicksand', 'Helvetica-Neue';
 }
 
 h1 {

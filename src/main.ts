@@ -13,7 +13,8 @@ import {
   CoNewspaper,
   LaMusicSolid,
   BiShop,
-  BiTicketPerforated
+  BiTicketPerforated,
+  RiShoppingBasketLine
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -22,7 +23,8 @@ addIcons(
   CoNewspaper,
   LaMusicSolid,
   BiShop,
-  BiTicketPerforated
+  BiTicketPerforated,
+  RiShoppingBasketLine
 )
 
 const app = createApp(App)

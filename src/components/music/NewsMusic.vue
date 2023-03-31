@@ -79,9 +79,11 @@ console.log(news)
 <style scoped lang="scss">
 @use '../../assets/styles/base.scss' as *;
 .news {
-  background-color: $clr-primary;
+  background-color: $clr-secondary;
   width: 100vw;
   height: 100vh;
+  color: $clr-primary;
+  font-size: 1.2em;
 
   scroll-snap-align: start;
 
@@ -109,7 +111,7 @@ console.log(news)
     display: flex;
     align-items: center;
     gap: 8em;
-    width: 70%;
+
     margin-bottom: 2em;
   }
 
@@ -129,6 +131,7 @@ console.log(news)
 
   &_newsText {
     color: $clr-blue;
+    font-size: 1.3em;
   }
 
   &_image {
@@ -141,6 +144,7 @@ console.log(news)
 
   &_link {
     white-space: nowrap;
+    font-size: 1.3em;
   }
 }
 </style>

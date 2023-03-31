@@ -43,7 +43,7 @@ function handleChangeWorld() {
     }
 
     &--icon {
-      color: black;
+      color: $clr-primary;
       z-index: 100;
       cursor: pointer;
       animation: wiggle 2000ms cubic-bezier(0, 0.51, 0.98, 1.43) infinite;

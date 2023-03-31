@@ -2,6 +2,7 @@
 // import { reactive } from 'vue'
 // const state = reactive({})
 import { useWorldStore } from '@/stores/world'
+import HomeMusic from '@/components/music/HomeMusic.vue'
 import NewsMusic from '../components/music/NewsMusic.vue'
 import QuartetMusic from '../components/music/QuartetMusic.vue'
 import ConcertsMusic from '../components/music/ConcertsMusic.vue'
@@ -21,6 +22,7 @@ function handleChangeWorld() {
     <button class="music_switch--btn" @click="handleChangeWorld">
       <v-icon class="music_switch--icon" name="co-chevron-double-right" scale="2" />
     </button>
+    <HomeMusic />
     <NewsMusic />
     <QuartetMusic />
     <ConcertsMusic />
@@ -30,8 +32,11 @@ function handleChangeWorld() {
 
 <style scoped lang="scss">
 @use '../assets/styles/base.scss' as *;
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
 .music {
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.3rem;
   overflow-y: overlay;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -50,7 +55,7 @@ function handleChangeWorld() {
     }
 
     &--icon {
-      color: black;
+      color: $clr-secondary;
       z-index: 100;
       cursor: pointer;
       animation: wiggle 2000ms cubic-bezier(0, 0.51, 0.98, 1.43) infinite;
