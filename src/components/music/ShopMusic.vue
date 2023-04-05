@@ -1,7 +1,9 @@
 <template>
   <div class="shop" id="shop">
+    <PaymentVue />
     <div class="shop_content">
-      <div class="item">
+      <ShoppingCart />
+      <div class="item" id="state-of-mind-vinyl">
         <div class="item_wrapper">
           <img src="../../assets/images/SoM-cover.jpeg" alt="State of Mind Cover" width="150" />
           <h2>State of Mind - Gilles Grethen Quartet & Strings (2022)</h2>
@@ -13,7 +15,7 @@
           <v-icon class="item_btn" name="ri-shopping-basket-line"></v-icon>
         </button>
       </div>
-      <div class="item">
+      <div class="item" id="state-of-mind-cd">
         <div class="item_wrapper">
           <img src="../../assets/images/SoM-cover.jpeg" alt="State of Mind Cover" width="150" />
           <h2>State of Mind - Gilles Grethen Quartet & Strings (2022)</h2>
@@ -25,7 +27,7 @@
           <v-icon class="item_btn" name="ri-shopping-basket-line"></v-icon>
         </button>
       </div>
-      <div class="item">
+      <div class="item" id="time-suite">
         <div class="item_wrapper">
           <img src="../../assets/images/cover-timeSuite.jpeg" alt="Time Suite Cover" width="150" />
           <h2>Time Suite - Gilles Grethen Quartet (2021)</h2>
@@ -42,7 +44,19 @@
 </template>
 
 <script setup lang="ts">
-function putItemIntoBasket() {}
+import ShoppingCart from './lib/ShoppingCart.vue'
+import PaymentVue from './lib/PaymentVue.vue'
+import { useCartStore } from '@/stores/cart'
+
+const store = useCartStore()
+const { addToCart } = store
+
+function putItemIntoBasket(e: Event) {
+  const el = e.target as HTMLElement
+  const item = el.closest('.item') as HTMLElement
+  const id = item.id
+  addToCart(id)
+}
 </script>
 
 <style scoped lang="scss">
@@ -93,9 +107,11 @@ function putItemIntoBasket() {}
 
 button {
   background: none;
+  font-family: 'Amatic SC', cursive;
+  font-size: 0.8em;
   border: 1px solid $clr-secondary;
   border-radius: 20px;
-  padding: 1em 2em;
+  padding: 0.8em 1.6em;
   color: $clr-secondary;
   position: absolute;
   bottom: 20%;

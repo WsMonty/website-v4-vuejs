@@ -16,6 +16,10 @@
 
 .developer_home {
   color: $clr-blue;
+  width: 100%;
+  height: 100%;
+
+  scroll-snap-align: start;
 
   h1 {
     font-size: 4em;

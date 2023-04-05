@@ -1,6 +1,19 @@
+<template>
+  <div class="developer">
+    <button class="developer_switch--btn" @click="handleChangeWorld">
+      <v-icon class="developer_switch--icon" name="co-chevron-double-left" scale="2" />
+    </button>
+    <HomeDeveloper />
+    <SkillsDeveloper />
+    <ContactDeveloper />
+  </div>
+</template>
+
 <script setup lang="ts">
 import { useWorldStore } from '@/stores/world'
 import HomeDeveloper from '@/components/developer/HomeDeveloper.vue'
+import SkillsDeveloper from '@/components/developer/SkillsDeveloper.vue'
+import ContactDeveloper from '@/components/developer/ContactDeveloper.vue'
 
 const store = useWorldStore()
 const { hideDeveloperWorld, showMusicWorld } = store
@@ -10,15 +23,6 @@ function handleChangeWorld() {
   hideDeveloperWorld()
 }
 </script>
-
-<template>
-  <div class="developer">
-    <button class="developer_switch--btn" @click="handleChangeWorld">
-      <v-icon class="developer_switch--icon" name="co-chevron-double-left" scale="2" />
-    </button>
-    <HomeDeveloper />
-  </div>
-</template>
 
 <style scoped lang="scss">
 @use '../assets/styles/base.scss' as *;
@@ -30,15 +34,20 @@ function handleChangeWorld() {
   background-color: $clr-secondary;
   color: $clr-primary;
   font-family: 'Space Grotesk', sans-serif;
+  overflow-y: overlay;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 
   &_switch {
     &--btn {
       background-color: transparent;
       border: none;
       width: 4em;
-      position: absolute;
+      position: sticky;
       top: 5%;
-      left: 5%;
+      float: left;
+      margin-left: 5%;
       z-index: 100;
     }
 

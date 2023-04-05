@@ -39,7 +39,6 @@ async function getNews() {
   return response.data.newsCollection.items
 }
 const news = await getNews()
-console.log(news)
 </script>
 
 <template>

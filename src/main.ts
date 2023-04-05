@@ -14,7 +14,16 @@ import {
   LaMusicSolid,
   BiShop,
   BiTicketPerforated,
-  RiShoppingBasketLine
+  RiShoppingBasketLine,
+  BiTrash,
+  CoJavascript,
+  CoTypescript,
+  CoVueJs,
+  CoReact,
+  CoGatsby,
+  CoElectron,
+  CoGit,
+  CoSassAlt
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -24,7 +33,16 @@ addIcons(
   LaMusicSolid,
   BiShop,
   BiTicketPerforated,
-  RiShoppingBasketLine
+  RiShoppingBasketLine,
+  BiTrash,
+  CoJavascript,
+  CoTypescript,
+  CoVueJs,
+  CoReact,
+  CoGatsby,
+  CoElectron,
+  CoGit,
+  CoSassAlt
 )
 
 const app = createApp(App)

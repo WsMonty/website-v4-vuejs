@@ -1,30 +1,3 @@
-<script setup lang="ts">
-// import { reactive } from 'vue'
-import MusicView from './views/MusicView.vue'
-import DeveloperView from './views/DeveloperView.vue'
-import { useWorldStore } from './stores/world'
-import { storeToRefs } from 'pinia'
-import { reactive } from 'vue'
-
-// const state = reactive({})
-
-const store = useWorldStore()
-
-const { musicWorld, developerWorld } = storeToRefs(store)
-
-const state = reactive({ x: '', y: '', xN: 0, yN: 0 })
-
-function updateDotPosition(event: MouseEvent) {
-  state.xN = event.clientX
-  state.yN = event.clientY
-  state.x = event.clientX - 10 + 'px'
-  state.y = event.clientY - 10 + 'px'
-}
-
-// Add event listener to update the dot and afterglow positions on mousemove
-document.addEventListener('mousemove', updateDotPosition)
-</script>
-
 <template>
   <div class="dot" ref="dotRef" :style="{ top: state.y, left: state.x }"></div>
 
@@ -59,6 +32,70 @@ document.addEventListener('mousemove', updateDotPosition)
     :class="{ 'developer--active': developerWorld, 'developer--close': !developerWorld }"
   />
 </template>
+
+<script setup lang="ts">
+// import { reactive } from 'vue'
+import MusicView from './views/MusicView.vue'
+import DeveloperView from './views/DeveloperView.vue'
+import { useWorldStore } from './stores/world'
+import { storeToRefs } from 'pinia'
+import { reactive } from 'vue'
+
+// const state = reactive({})
+
+const store = useWorldStore()
+
+const { musicWorld, developerWorld } = storeToRefs(store)
+
+const state = reactive({ x: '', y: '', xN: 0, yN: 0 })
+
+function updateDotPosition(event: MouseEvent) {
+  state.xN = event.clientX
+  state.yN = event.clientY
+  state.x = event.clientX - 10 + 'px'
+  state.y = event.clientY - 10 + 'px'
+}
+
+// Add event listener to update the dot and afterglow positions on mousemove
+document.addEventListener('mousemove', (e) => {
+  updateDotPosition(e)
+  // updateDotColor()
+})
+
+// function updateDotColor() {
+//   function getBackgroundColor(x, y) {
+//     const element = document.elementFromPoint(x, y) as HTMLElement
+//     const style = getComputedStyle(element)
+//     return style.backgroundColor
+//   }
+
+//   function complementaryColor(rgbColor) {
+//     // Parse the RGB color string
+//     const [r, g, b] = rgbColor.match(/\d+/g).map(Number)
+
+//     // Compute the complementary color
+//     const rComp = 255 - r
+//     const gComp = 255 - g
+//     const bComp = 255 - b
+
+//     // Convert the complementary color to a hex color string
+//     const hexColor =
+//       '#' + [rComp, gComp, bComp].map((c) => c.toString(16).padStart(2, '0')).join('')
+
+//     return hexColor
+//   }
+
+//   const movingDiv = document.querySelector('.dot') as HTMLElement
+//   document.addEventListener('mousemove', (event) => {
+//     const x = event.clientX
+//     const y = event.clientY
+//     const bgColor = getBackgroundColor(x, y)
+//     const complementary = complementaryColor(bgColor)
+
+//     movingDiv.style.backgroundColor = complementary
+//   })
+// }
+</script>
 
 <style scoped lang="scss">
 @use './assets/styles/base.scss' as *;
@@ -145,7 +182,7 @@ document.addEventListener('mousemove', updateDotPosition)
 }
 .dot {
   position: absolute;
-  background-color: $clr-blue;
+  background-color: rgba(29, 29, 104, 0.747);
   width: 20px;
   height: 20px;
   border-radius: 50%;

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// import { reactive } from 'vue'
-// const state = reactive({})
 import { useWorldStore } from '@/stores/world'
 import HomeMusic from '@/components/music/HomeMusic.vue'
 import NewsMusic from '../components/music/NewsMusic.vue'
