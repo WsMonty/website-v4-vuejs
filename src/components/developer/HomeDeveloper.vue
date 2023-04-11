@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use '../../assets/styles/base.scss' as *;
 
 .developer_home {

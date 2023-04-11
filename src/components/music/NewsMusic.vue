@@ -1,3 +1,30 @@
+<template>
+  <div class="news" id="news">
+    <div class="news_content">
+      <template v-for="(article, i) in news" :key="'article-nr' + i">
+        <div class="article" v-if="i < 3">
+          <h2>{{ article.title }}</h2>
+          <div class="article_wrapper">
+            <img
+              v-if="article.media"
+              class="article_image"
+              :src="article.media.url"
+              :alt="article.media.title"
+              width="300"
+            />
+            <p class="article_newsText">{{ article.newsText }}</p>
+          </div>
+          <div class="article_wrapper2">
+            <a class="article_link" :href="article.link" target="_blank"
+              >Click here for more info!</a
+            >
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 async function getNews() {
   const query = `
@@ -39,41 +66,14 @@ async function getNews() {
   return response.data.newsCollection.items
 }
 const news = await getNews()
-</script>
 
-<template>
-  <div class="news" id="news">
-    <div class="news_content">
-      <template v-for="(article, i) in news" :key="'article-nr' + i">
-        <div class="article" v-if="i < 3">
-          <h2>{{ article.title }}</h2>
-          <div class="article_wrapper">
-            <img
-              v-if="article.media"
-              class="article_image"
-              :src="article.media.url"
-              :alt="article.media.title"
-              width="300"
-            />
-            <p class="article_newsText">{{ article.newsText }}</p>
-          </div>
-          <div class="article_wrapper2">
-            <a class="article_link" :href="article.link" target="_blank"
-              >Click here for more info!</a
-            >
-            <iframe
-              v-if="article.mediaContent"
-              :src="article.mediaContent"
-              frameborder="0"
-              width="800"
-              height="400"
-            ></iframe>
-          </div>
-        </div>
-      </template>
-    </div>
-  </div>
-</template>
+function toggleIframeOverlay(disabled: boolean) {
+  const overlay = document.getElementById('iframe-overlay')
+  if (overlay) {
+    overlay.style.pointerEvents = disabled ? 'none' : 'auto'
+  }
+}
+</script>
 
 <style scoped lang="scss">
 @use '../../assets/styles/base.scss' as *;
@@ -117,7 +117,8 @@ const news = await getNews()
   &_wrapper2 {
     display: flex;
     align-items: center;
-    gap: 6em;
+    justify-content: center;
+
     width: 100%;
     margin-bottom: 2em;
     padding-left: 3em;
@@ -137,13 +138,9 @@ const news = await getNews()
     border-radius: 20px;
   }
 
-  iframe {
-    border-radius: 20px;
-  }
-
   &_link {
     white-space: nowrap;
-    font-size: 1.3em;
+    font-size: 2em;
   }
 }
 </style>

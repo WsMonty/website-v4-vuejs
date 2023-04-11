@@ -2,7 +2,7 @@
 import { useWorldStore } from '@/stores/world'
 import HomeMusic from '@/components/music/HomeMusic.vue'
 import NewsMusic from '../components/music/NewsMusic.vue'
-import QuartetMusic from '../components/music/QuartetMusic.vue'
+import ProjectsMusic from '../components/music/ProjectsMusic.vue'
 import ConcertsMusic from '../components/music/ConcertsMusic.vue'
 import ShopMusic from '../components/music/ShopMusic.vue'
 
@@ -22,7 +22,7 @@ function handleChangeWorld() {
     </button>
     <HomeMusic />
     <NewsMusic />
-    <QuartetMusic />
+    <ProjectsMusic />
     <ConcertsMusic />
     <ShopMusic />
   </div>
@@ -53,7 +53,7 @@ function handleChangeWorld() {
     }
 
     &--icon {
-      color: $clr-secondary;
+      color: $clr-blue;
       z-index: 100;
       cursor: pointer;
       animation: wiggle 2000ms cubic-bezier(0, 0.51, 0.98, 1.43) infinite;

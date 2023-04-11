@@ -23,7 +23,12 @@ import {
   CoGatsby,
   CoElectron,
   CoGit,
-  CoSassAlt
+  CoSassAlt,
+  CoNextJs,
+  CoGithub,
+  CoInstagram,
+  CoLinkedin,
+  SiFiverr
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -42,7 +47,12 @@ addIcons(
   CoGatsby,
   CoElectron,
   CoGit,
-  CoSassAlt
+  CoSassAlt,
+  CoNextJs,
+  CoGithub,
+  CoInstagram,
+  CoLinkedin,
+  SiFiverr
 )
 
 const app = createApp(App)

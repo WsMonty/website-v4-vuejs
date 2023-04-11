@@ -2,6 +2,7 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
   "compilerOptions": {
+    "ignoreDeprecations": "5.0",
     "module": "es2022",
     "strict": true,
     "target": "es2022",
@@ -11,7 +12,6 @@
       "@/*": ["./src/*"]
     }
   },
-
   "references": [
     {
       "path": "./tsconfig.node.json"

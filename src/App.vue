@@ -16,7 +16,7 @@
       <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
     </li>
     <li>
-      <a href="#quartet"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
+      <a href="#projects"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
     </li>
     <li>
       <a href="#concerts"
@@ -186,7 +186,13 @@ document.addEventListener('mousemove', (e) => {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  z-index: 999;
+  z-index: 9999;
   pointer-events: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .dot {
+    visibility: hidden;
+  }
 }
 </style>
