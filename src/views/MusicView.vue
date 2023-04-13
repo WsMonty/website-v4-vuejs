@@ -128,7 +128,7 @@ function handleOpenNavbar() {
   border-radius: 20px;
   background-color: $clr-blue;
   position: sticky;
-  top: 8%;
+  top: 10%;
   left: 2%;
   z-index: 999;
   display: flex;
@@ -155,9 +155,11 @@ function handleOpenNavbar() {
 @media (max-width: 800px) {
   .hamburger {
     display: block;
+    width: fit-content;
     color: $clr-blue;
     position: sticky;
-    top: 5px;
+    top: 3%;
+    margin-left: 3%;
     z-index: 999;
   }
 }

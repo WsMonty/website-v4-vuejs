@@ -21,13 +21,13 @@
         ></v-icon>
       </div>
     </template>
-    <form action="submit" @submit.prevent="handleToPayment">
+    <form action="submit" @submit.prevent="handleToPayment" v-if="cart.length > 0">
       <CountryList />
       <p>
         If your country isn't listed, you wish to pick it up or have your copy signed, please
         contact me!
       </p>
-      <div v-if="cart.length > 0" class="shoppingcart_bottom_wrapper">
+      <div class="shoppingcart_bottom_wrapper">
         <div class="flex-wrapper">
           <p>(Shipping Cost: {{ shippingCost }})</p>
           <h2>
@@ -236,8 +236,8 @@ form {
 
     &--icon {
       right: 0;
-      left: 10%;
-      top: 1.5%;
+      left: 25%;
+      top: 1.2%;
     }
 
     &_item {
