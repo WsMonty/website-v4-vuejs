@@ -75,4 +75,24 @@
   padding: 1em;
   transition: 150ms ease-in-out;
 }
+
+@media (max-width: 800px) {
+  .contact {
+    height: fit-content;
+
+    font-size: 1em;
+
+    &_content {
+      border: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 4em 0;
+    }
+  }
+
+  .socials {
+    transform: scale(0.8);
+  }
+}
 </style>

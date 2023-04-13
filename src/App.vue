@@ -26,6 +26,9 @@
     <li>
       <a href="#shop"><v-icon class="navbar--icon" name="bi-shop" scale="2.5" /></a>
     </li>
+    <li>
+      <a href="#contact"><v-icon class="navbar--icon" name="bi-mailbox" scale="2.5" /></a>
+    </li>
   </ul>
   <DeveloperView
     class="developer"
@@ -61,40 +64,6 @@ document.addEventListener('mousemove', (e) => {
   updateDotPosition(e)
   // updateDotColor()
 })
-
-// function updateDotColor() {
-//   function getBackgroundColor(x, y) {
-//     const element = document.elementFromPoint(x, y) as HTMLElement
-//     const style = getComputedStyle(element)
-//     return style.backgroundColor
-//   }
-
-//   function complementaryColor(rgbColor) {
-//     // Parse the RGB color string
-//     const [r, g, b] = rgbColor.match(/\d+/g).map(Number)
-
-//     // Compute the complementary color
-//     const rComp = 255 - r
-//     const gComp = 255 - g
-//     const bComp = 255 - b
-
-//     // Convert the complementary color to a hex color string
-//     const hexColor =
-//       '#' + [rComp, gComp, bComp].map((c) => c.toString(16).padStart(2, '0')).join('')
-
-//     return hexColor
-//   }
-
-//   const movingDiv = document.querySelector('.dot') as HTMLElement
-//   document.addEventListener('mousemove', (event) => {
-//     const x = event.clientX
-//     const y = event.clientY
-//     const bgColor = getBackgroundColor(x, y)
-//     const complementary = complementaryColor(bgColor)
-
-//     movingDiv.style.backgroundColor = complementary
-//   })
-// }
 </script>
 
 <style scoped lang="scss">
@@ -193,6 +162,38 @@ document.addEventListener('mousemove', (e) => {
 @media (hover: none) and (pointer: coarse) {
   .dot {
     visibility: hidden;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    visibility: hidden;
+  }
+}
+@media (max-height: 720px) {
+  .navbar {
+    height: 80%;
+    top: 10%;
+    transform: scale(0.8);
+  }
+}
+@media (max-height: 620px) {
+  .navbar {
+    height: 90%;
+    top: 5%;
+    transform: scale(0.8);
+  }
+}
+@media (max-height: 540px) {
+  .navbar {
+    height: 100%;
+    top: 0;
+    transform: scale(0.8);
+  }
+}
+@media (max-width: 1200px) {
+  .navbar {
+    width: 7%;
   }
 }
 </style>

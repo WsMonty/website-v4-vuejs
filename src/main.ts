@@ -28,7 +28,10 @@ import {
   CoGithub,
   CoInstagram,
   CoLinkedin,
-  SiFiverr
+  SiFiverr,
+  BiMailbox,
+  CoFacebook,
+  CoYoutube
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -52,7 +55,10 @@ addIcons(
   CoGithub,
   CoInstagram,
   CoLinkedin,
-  SiFiverr
+  SiFiverr,
+  BiMailbox,
+  CoFacebook,
+  CoYoutube
 )
 
 const app = createApp(App)

@@ -1,6 +1,10 @@
 <template>
   <div class="news" id="news">
     <div class="news_content">
+      <div class="mobile_header">
+        <h1>NEWS</h1>
+        <p><a href="#projects" class="a-nostyling">(skip to projects)</a></p>
+      </div>
       <template v-for="(article, i) in news" :key="'article-nr' + i">
         <div class="article" v-if="i < 3">
           <h2>{{ article.title }}</h2>
@@ -66,13 +70,6 @@ async function getNews() {
   return response.data.newsCollection.items
 }
 const news = await getNews()
-
-function toggleIframeOverlay(disabled: boolean) {
-  const overlay = document.getElementById('iframe-overlay')
-  if (overlay) {
-    overlay.style.pointerEvents = disabled ? 'none' : 'auto'
-  }
-}
 </script>
 
 <style scoped lang="scss">
@@ -91,7 +88,7 @@ function toggleIframeOverlay(disabled: boolean) {
   align-items: center;
 
   &_content {
-    width: 70%;
+    width: 80%;
     height: 80%;
     margin-block: 2em;
     border: 1px solid $clr-blue-lighter;
@@ -141,6 +138,45 @@ function toggleIframeOverlay(disabled: boolean) {
   &_link {
     white-space: nowrap;
     font-size: 2em;
+  }
+}
+
+@media (max-width: 800px) {
+  .news {
+    height: fit-content;
+
+    font-size: 1em;
+
+    &_content {
+      border: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      padding-top: 2em;
+    }
+  }
+
+  .article {
+    padding: 1em;
+    h2 {
+      margin-bottom: 0;
+      font-size: 2em;
+    }
+
+    &_wrapper {
+      display: block;
+    }
+
+    &_wrapper2 {
+      display: block;
+      margin-bottom: 2em;
+      padding-left: 0em;
+    }
+
+    &_link {
+      font-size: 1.5em;
+    }
   }
 }
 </style>

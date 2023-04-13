@@ -21,13 +21,23 @@
         ></v-icon>
       </div>
     </template>
-    <div v-if="cart.length > 0" class="shoppingcart_bottom_wrapper">
-      <h2>
-        Total price:
-        {{ getTotalPrice() }}
-      </h2>
-      <button @click="handleToPayment" class="shoppingcart_payment--btn">Proceed to payment</button>
-    </div>
+    <form action="submit" @submit.prevent="handleToPayment">
+      <CountryList />
+      <p>
+        If your country isn't listed, you wish to pick it up or have your copy signed, please
+        contact me!
+      </p>
+      <div v-if="cart.length > 0" class="shoppingcart_bottom_wrapper">
+        <div class="flex-wrapper">
+          <p>(Shipping Cost: {{ shippingCost }})</p>
+          <h2>
+            Total price:
+            {{ getTotalPrice() }}
+          </h2>
+        </div>
+        <button type="submit" class="shoppingcart_payment--btn">Proceed to payment</button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -36,11 +46,13 @@ import { reactive } from 'vue'
 
 import { useCartStore } from '@/stores/cart'
 import { storeToRefs } from 'pinia'
+import { loadPaypal } from '@/assets/helpers/loadPaypal'
+import CountryList from '@/assets/helpers/CountryList.vue'
 
 const store = useCartStore()
 
-const { cart } = storeToRefs(store)
-const { removeFromCart, updateTotalPrice, showPayment } = store
+const { cart, totalPrice, shippingCost } = storeToRefs(store)
+const { removeFromCart, updateTotalPrice, showPayment, showSuccessMessage, hidePayment } = store
 
 const state = reactive({ cartOpen: false })
 
@@ -55,7 +67,7 @@ function getTotalPrice() {
       : cart.value.length * 15
 
   updateTotalPrice(price)
-  return price + '€'
+  return price + shippingCost.value + '€'
 }
 
 function handleOpenCart() {
@@ -85,10 +97,9 @@ function handleRemoveFromCart(e: Event) {
 }
 
 function handleToPayment() {
-  state.cartOpen = false
-  //@ts-ignore
-  document.querySelector('.payment').classList.remove('hidden')
   showPayment()
+  loadPaypal(totalPrice.value, shippingCost.value, hidePayment, showSuccessMessage)
+  state.cartOpen = false
 }
 </script>
 
@@ -97,13 +108,14 @@ function handleToPayment() {
 .shoppingcart {
   position: absolute;
   width: 60%;
-  height: 80%;
+  height: 98%;
   background-color: $clr-blue-lighter;
   border-radius: 20px;
   top: 1%;
   right: 3%;
   z-index: 98;
   padding: 2em;
+  padding-top: 3em;
   color: $clr-blue;
   overflow-y: auto;
   overflow-x: hidden;
@@ -132,9 +144,9 @@ function handleToPayment() {
   }
 
   &_bottom_wrapper {
-    margin-top: 1em;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
   }
 
   &_item {
@@ -161,6 +173,7 @@ function handleToPayment() {
   }
 
   &_payment--btn {
+    height: fit-content;
     background: none;
     border: 1px solid $clr-blue;
     border-radius: 20px;
@@ -178,6 +191,17 @@ function handleToPayment() {
   }
 }
 
+form {
+  p {
+    margin-top: 0.5em;
+  }
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 @keyframes expand {
   from {
     transform: scale(0);
@@ -192,6 +216,55 @@ function handleToPayment() {
   }
   to {
     transform: scale(0);
+  }
+}
+
+@media (max-width: 800px) {
+  .shoppingcart {
+    width: 90%;
+    height: 80vh;
+    right: 0;
+    left: 5%;
+
+    &--open {
+      transform-origin: top left;
+    }
+
+    &--close {
+      transform-origin: top left;
+    }
+
+    &--icon {
+      right: 0;
+      left: 10%;
+      top: 1.5%;
+    }
+
+    &_item {
+      padding: 1em 0;
+    }
+
+    &_bottom_wrapper {
+      display: block;
+      width: 100%;
+
+      h2 {
+        float: right;
+        padding: 0.5em;
+      }
+    }
+
+    &_payment--btn {
+      width: 100%;
+      margin-top: 1em;
+      font-size: 0.8em;
+    }
+  }
+
+  form {
+    p {
+      font-size: 1.2em;
+    }
   }
 }
 </style>

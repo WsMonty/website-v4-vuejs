@@ -45,9 +45,9 @@ function handleChangeWorld() {
       border: none;
       width: 4em;
       position: sticky;
-      top: 5%;
+      top: 3%;
       float: left;
-      margin-left: 5%;
+      margin-left: 8%;
       z-index: 100;
     }
 

@@ -35,6 +35,7 @@ $clr-blue-intense: rgb(99, 50, 223);
 body {
   min-height: 100vh;
   color: $clr-secondary;
+  background-color: $clr-primary;
   line-height: 1.6;
   font-size: 15px;
   overflow: hidden;
@@ -68,5 +69,44 @@ a {
   &:hover {
     text-decoration: underline;
     color: $clr-blue-intense;
+  }
+}
+
+.a-nostyling {
+  color: $clr-primary;
+  text-decoration: none;
+
+  transition: none;
+
+  &:hover {
+    text-decoration: none;
+    color: $clr-primary;
+  }
+}
+.a-nostyling--2 {
+  color: $clr-secondary;
+  text-decoration: none;
+
+  transition: none;
+
+  &:hover {
+    text-decoration: none;
+    color: $clr-secondary;
+  }
+}
+
+.mobile_header {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .mobile_header {
+    display: block;
+    padding-left: 2em;
+    padding-top: 1em;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
   }
 }

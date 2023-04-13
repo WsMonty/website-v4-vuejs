@@ -30,4 +30,23 @@
     padding: 4em;
   }
 }
+
+@media (max-width: 500px) {
+  .developer_home_content {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .developer_home {
+    h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+  }
+}
 </style>

@@ -3,67 +3,29 @@
     <button class="payment_closebtn" @click="handleBackToStore">Back to store</button>
     <div class="paypal" id="paypal-button"></div>
   </div>
-  <div v-if="state.showSuccessMessage" class="success">
+  <div v-if="successMessageShown" class="success">
     <h2>Payment was successful! Thank your for your order!</h2>
-    <button @click="state.showSuccessMessage = false" class="close">Back to shop</button>
+    <button @click="hideSuccessMessage" class="close">Back to shop</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import { loadScript } from '@paypal/paypal-js'
 import { useCartStore } from '@/stores/cart'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
-
-const state = reactive({ showSuccessMessage: false })
+import { loadPaypal } from '../../../assets/helpers/loadPaypal'
 
 const store = useCartStore()
-const { totalPrice, paymentIsShown } = storeToRefs(store)
-const { hidePayment } = store
+const { paymentIsShown, successMessageShown, totalPrice, shippingCost } = storeToRefs(store)
+const { hidePayment, hideSuccessMessage, showSuccessMessage } = store
 
-onMounted(async () => {
-  loadScript({
-    'client-id': 'AZuOJhphk2lqHP76TcBJzx9pernNN8M0ZphLh8u04xv8HCLCF-KzP-FKie_mLKYAdLf3N-59ZqRzgQWq',
-    currency: 'EUR'
-  })
-    .then((paypal) => {
-      // @ts-ignore
-      paypal
-        .Buttons({
-          createOrder: function (data, actions) {
-            return actions.order.create({
-              purchase_units: [
-                {
-                  amount: {
-                    currency_code: 'EUR',
-                    value: totalPrice.value + ''
-                  }
-                }
-              ]
-            })
-          },
-          // @ts-ignore
-          onApprove: function (data, actions) {
-            return actions.order?.capture().then(function () {
-              hidePayment()
-              state.showSuccessMessage = true
-            })
-          }
-        })
-        .render('#paypal-button')
-        .catch((error) => {
-          console.error('failed to render the PayPal Buttons', error)
-        })
-    })
-    .catch((error) => {
-      console.error('failed to load the PayPal JS SDK script', error)
-    })
+onMounted(() => {
+  if (!document.getElementById('#paypal-button')) return
+  loadPaypal(totalPrice.value, shippingCost.value, hidePayment, showSuccessMessage)
 })
 
 function handleBackToStore() {
-  //@ts-ignore
-  document.querySelector('.payment').classList.add('hidden')
+  hidePayment()
 }
 </script>
 
@@ -71,7 +33,7 @@ function handleBackToStore() {
 @use '../../../assets/styles/base.scss' as *;
 .payment {
   width: 80vw;
-  height: 80vh;
+  min-height: 80vh;
   background-color: $clr-secondary;
   position: absolute;
   top: 0;
@@ -80,6 +42,7 @@ function handleBackToStore() {
   margin-left: 10vw;
   z-index: 999;
   border-radius: 20px;
+  padding: 1em 0 0 0;
 
   display: flex;
   justify-content: center;
@@ -145,5 +108,14 @@ function handleBackToStore() {
   color: $clr-blue;
   width: 50%;
   z-index: 1000;
+}
+
+@media (max-width: 800px) {
+  .payment {
+    padding: 5em 0;
+  }
+  .paypal {
+    width: 90%;
+  }
 }
 </style>

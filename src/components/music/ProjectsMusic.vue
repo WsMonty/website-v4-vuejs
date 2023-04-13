@@ -1,18 +1,30 @@
 <template>
   <div class="projects" id="projects">
     <div class="projects_content">
+      <div class="mobile_header">
+        <h1>Projects</h1>
+        <p><a href="#concerts" class="a-nostyling--2">(skip to concerts)</a></p>
+      </div>
       <div class="project">
-        <h2>Gilles Grethen Quartet</h2>
+        <h2 class="hover" @click="handleClickImg('quartet')">Gilles Grethen Quartet</h2>
         <div class="flex-wrapper">
-          <div class="img-wrapper">
-            <img
-              src="../../assets/images/gg4tet.jpg"
-              alt="Gilles Grethen Quartet Outdoors"
-              width="500"
-              @click="handleClickImg('quartet')"
-            />
-            <div class="project_overlay project_overlay--quartet">
-              <h3>Click here for more info!</h3>
+          <div class="text-align">
+            <div class="img-wrapper">
+              <img
+                src="../../assets/images/gg4tet.jpg"
+                alt="Gilles Grethen Quartet Outdoors"
+                width="500"
+                @click="handleClickImg('quartet')"
+              />
+              <div class="project_overlay project_overlay--quartet">
+                <h3>Click here for more info!</h3>
+              </div>
+              <a
+                class="project_link_press"
+                href="https://drive.google.com/drive/folders/10PGGtQ78Vma6O3YF0T8ZA1V_p7ghgVkL?usp=sharing"
+                target="_blank"
+                >Get Press Material!</a
+              >
             </div>
           </div>
           <p>
@@ -28,7 +40,7 @@
       </div>
       <hr />
       <div class="project">
-        <h2>Linq</h2>
+        <h2 class="hover" @click="handleClickImg('linq')">Linq</h2>
         <div class="flex-wrapper">
           <p>
             Have you ever yearned for the freshness of Hip-Hop to be delivered with a punk rock
@@ -60,7 +72,7 @@
       </div>
       <hr />
       <div class="project">
-        <h2>JEM</h2>
+        <h2 class="hover" @click="handleClickImg('jem')">JEM</h2>
         <div class="flex-wrapper">
           <div class="img-wrapper">
             <img
@@ -142,7 +154,7 @@ function handleClickImg(opt: string) {
   color: $clr-secondary;
 
   &_content {
-    width: 70%;
+    width: 80%;
     height: 80%;
     border: 1px solid $clr-blue-lighter;
     border-radius: 20px;
@@ -174,7 +186,7 @@ function handleClickImg(opt: string) {
   text-align: center;
 
   &--quartet {
-    height: 97.5%;
+    height: 75.4%;
   }
 
   &--linq {
@@ -190,8 +202,15 @@ function handleClickImg(opt: string) {
 }
 
 h2 {
-  padding: 1em;
+  margin: 1em;
   font-size: 3em;
+
+  transition: 150ms ease-in-out;
+}
+
+.hover:hover {
+  color: $clr-blue;
+  text-decoration: underline;
 }
 
 hr {
@@ -228,6 +247,47 @@ img {
   }
 }
 
-@media (max-width: 1200px) {
+.text-align {
+  text-align: center;
+}
+
+.project_link_press {
+  font-size: 3em;
+}
+
+@media (max-width: 800px) {
+  .projects {
+    height: fit-content;
+
+    font-size: 1em;
+
+    &_content {
+      border: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 2em 0;
+    }
+  }
+  .project_overlay {
+    display: none;
+  }
+
+  h2 {
+    margin: 0.5em;
+  }
+
+  .flex-wrapper {
+    display: block;
+
+    img {
+      width: 100%;
+      border-radius: 0;
+    }
+
+    p {
+      padding: 1em;
+    }
+  }
 }
 </style>

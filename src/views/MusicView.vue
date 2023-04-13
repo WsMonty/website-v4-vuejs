@@ -5,6 +5,7 @@ import NewsMusic from '../components/music/NewsMusic.vue'
 import ProjectsMusic from '../components/music/ProjectsMusic.vue'
 import ConcertsMusic from '../components/music/ConcertsMusic.vue'
 import ShopMusic from '../components/music/ShopMusic.vue'
+import ContactMusic from '@/components/music/ContactMusic.vue'
 
 const store = useWorldStore()
 const { showDeveloperWorld, hideMusicWorld } = store
@@ -25,6 +26,7 @@ function handleChangeWorld() {
     <ProjectsMusic />
     <ConcertsMusic />
     <ShopMusic />
+    <ContactMusic />
   </div>
 </template>
 
@@ -46,9 +48,9 @@ function handleChangeWorld() {
       border: none;
       width: 4em;
       position: sticky;
-      top: 5%;
+      top: 3%;
       float: right;
-      margin-right: 5%;
+      margin-right: 8%;
       z-index: 100;
     }
 

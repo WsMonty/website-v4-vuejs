@@ -2,6 +2,10 @@
   <div class="shop" id="shop">
     <PaymentVue />
     <div class="shop_content">
+      <div class="mobile_header">
+        <h1>Shop</h1>
+        <p><a href="#contact" class="a-nostyling--2">(skip to contact)</a></p>
+      </div>
       <ShoppingCart />
       <div class="item" id="state-of-mind-vinyl">
         <div class="item_wrapper">
@@ -126,6 +130,48 @@ button {
   &:hover {
     background-color: $clr-secondary;
     color: $clr-primary;
+  }
+}
+
+@media (max-width: 800px) {
+  .shop {
+    height: fit-content;
+
+    font-size: 1em;
+
+    &_content {
+      border: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 4em 0;
+    }
+  }
+
+  .item {
+    font-size: 1.2em;
+
+    &_wrapper {
+      display: block;
+    }
+    h2 {
+      font-size: 1.7em;
+    }
+    h3 {
+      font-size: 1.6em;
+    }
+    p {
+      font-size: 1.5em;
+    }
+
+    img {
+      border-radius: 10px;
+    }
+  }
+
+  button {
+    position: initial;
+    margin-top: 1em;
   }
 }
 </style>

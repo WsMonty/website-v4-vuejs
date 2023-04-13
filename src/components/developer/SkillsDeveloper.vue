@@ -300,4 +300,83 @@ function handleMouseLeave() {
     }
   }
 }
+
+@media (max-width: 800px) {
+  .skills {
+    height: fit-content;
+
+    font-size: 1em;
+
+    &_used {
+      visibility: hidden;
+    }
+
+    &_content {
+      border: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 4em 0;
+
+      flex-direction: column;
+
+      &--left {
+        width: 100%;
+        background-color: transparent;
+
+        .img {
+          padding: 0 1em;
+
+          &--1 {
+            &:hover {
+              transform: none;
+              border: none;
+            }
+            &:hover + .project_overlay--1 {
+              visibility: hidden;
+              transform: none;
+            }
+          }
+          &--2 {
+            &:hover {
+              transform: none;
+              border: none;
+            }
+            &:hover + .project_overlay--2 {
+              visibility: hidden;
+              transform: none;
+            }
+          }
+          &--3 {
+            &:hover {
+              transform: none;
+              border: none;
+            }
+            &:hover + .project_overlay--3 {
+              visibility: hidden;
+              transform: none;
+            }
+          }
+        }
+      }
+      &--right {
+        width: 90%;
+        border-radius: 20px;
+        padding: 2em;
+        margin-top: 1em;
+
+        &_list {
+          display: flex;
+          align-items: center;
+          gap: 2em;
+          padding: 0.75em 1em;
+
+          &--active {
+            color: $clr-blue;
+          }
+        }
+      }
+    }
+  }
+}
 </style>
