@@ -31,7 +31,8 @@ import {
   SiFiverr,
   BiMailbox,
   CoFacebook,
-  CoYoutube
+  CoYoutube,
+  HiSolidMenuAlt1
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -58,7 +59,8 @@ addIcons(
   SiFiverr,
   BiMailbox,
   CoFacebook,
-  CoYoutube
+  CoYoutube,
+  HiSolidMenuAlt1
 )
 
 const app = createApp(App)

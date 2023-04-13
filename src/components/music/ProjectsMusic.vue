@@ -160,7 +160,7 @@ function handleClickImg(opt: string) {
     border-radius: 20px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 2em;
+    padding: 0 2em 2em 2em;
     padding-bottom: 8em;
   }
 }
