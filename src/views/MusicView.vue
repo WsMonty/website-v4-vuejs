@@ -150,6 +150,7 @@ function handleCloseMobileNavbar() {
 .mobile_navbar {
   height: 0%;
   width: 20%;
+  padding: 1em 0;
   border-radius: 20px;
   background-color: $clr-blue;
   position: sticky;
@@ -184,19 +185,19 @@ function handleCloseMobileNavbar() {
 
 @keyframes openMobileNavbar {
   0% {
-    height: 0%;
+    height: 0;
   }
   100% {
-    height: 55%;
+    height: 65%;
   }
 }
 
 @keyframes closeMobileNavbar {
   0% {
-    height: 55%;
+    height: 65%;
   }
   100% {
-    height: 0%;
+    height: 0;
   }
 }
 .navbar--icon {
