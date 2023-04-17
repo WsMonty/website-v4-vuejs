@@ -46,13 +46,15 @@
             width="400"
             height="200"
             class="img img--3"
+            @click="handleOpenLink('team')"
             @mouseover="handleMouseOver('team')"
             @mouseleave="handleMouseLeave"
           />
           <div class="project_overlay project_overlay--3">
             <h3>
               WEB3 integrated Football Manager <br />
-              Not online yet.
+              Not online yet. <br />
+              Click here for more information!
             </h3>
           </div>
         </div>
@@ -127,6 +129,8 @@ function handleOpenLink(option: string) {
     case 'chordle':
       window.open('https://jazzchordle.gatsbyjs.io/')
       return
+    case 'team':
+      window.open('https://www.theteamfootball.com/')
   }
 }
 
