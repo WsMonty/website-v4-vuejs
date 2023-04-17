@@ -72,7 +72,7 @@ function handleOpenNavbar() {
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
 .music {
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Amatic SC', 'Helvetica Neue', sans-serif;
   font-size: 1.3rem;
   overflow-y: overlay;
   overflow-x: hidden;
