@@ -2,31 +2,32 @@
   <div class="music">
     <div @click="handleOpenNavbar" class="hamburger" :class="{ hidden: developerWorld }">
       <v-icon name="hi-solid-menu-alt-1" scale="2.5"></v-icon>
-    </div>
-    <div
-      class="mobile_navbar"
-      :class="{ 'mobile_navbar--active': state.mobileNavbar }"
-      id="mobile_navbar"
-      v-if="state.mobileNavbar"
-    >
-      <li v-if="state.mobileNavbarIcons">
-        <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
-      </li>
-      <li v-if="state.mobileNavbarIcons">
-        <a href="#projects"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
-      </li>
-      <li v-if="state.mobileNavbarIcons">
-        <a href="#concerts"
-          ><v-icon class="navbar--icon" name="bi-ticket-perforated" scale="2.5"
-        /></a>
-      </li>
-      <li v-if="state.mobileNavbarIcons">
-        <a href="#shop"><v-icon class="navbar--icon" name="bi-shop" scale="2.5" /></a>
-      </li>
-      <li v-if="state.mobileNavbarIcons">
-        <a href="#contact"><v-icon class="navbar--icon" name="bi-mailbox" scale="2.5" /></a>
-      </li>
-      <p v-if="state.mobileNavbarIcons" @click="handleCloseMobileNavbar">Close</p>
+
+      <div
+        class="mobile_navbar"
+        :class="{ 'mobile_navbar--active': state.mobileNavbar }"
+        id="mobile_navbar"
+        v-if="state.mobileNavbar"
+      >
+        <li v-if="state.mobileNavbarIcons">
+          <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
+        </li>
+        <li v-if="state.mobileNavbarIcons">
+          <a href="#projects"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
+        </li>
+        <li v-if="state.mobileNavbarIcons">
+          <a href="#concerts"
+            ><v-icon class="navbar--icon" name="bi-ticket-perforated" scale="2.5"
+          /></a>
+        </li>
+        <li v-if="state.mobileNavbarIcons">
+          <a href="#shop"><v-icon class="navbar--icon" name="bi-shop" scale="2.5" /></a>
+        </li>
+        <li v-if="state.mobileNavbarIcons">
+          <a href="#contact"><v-icon class="navbar--icon" name="bi-mailbox" scale="2.5" /></a>
+        </li>
+        <p v-if="state.mobileNavbarIcons" @click="handleCloseMobileNavbar">Close</p>
+      </div>
     </div>
     <button class="music_switch--btn" @click="handleChangeWorld">
       <v-icon class="music_switch--icon" name="co-chevron-double-right" scale="2" />
@@ -149,12 +150,12 @@ function handleCloseMobileNavbar() {
 
 .mobile_navbar {
   height: 0%;
-  width: 20%;
+  width: 4em;
   padding: 1em 0;
   border-radius: 20px;
   background-color: $clr-blue;
-  position: sticky;
-  top: 10%;
+  position: absolute;
+  top: 100%;
   left: 2%;
   z-index: 999;
   display: flex;
@@ -180,6 +181,7 @@ function handleCloseMobileNavbar() {
 
   p {
     font-size: 1.3em;
+    color: $clr-secondary;
   }
 }
 
@@ -188,13 +190,13 @@ function handleCloseMobileNavbar() {
     height: 0;
   }
   100% {
-    height: 65%;
+    height: 20em;
   }
 }
 
 @keyframes closeMobileNavbar {
   0% {
-    height: 65%;
+    height: 20em;
   }
   100% {
     height: 0;
