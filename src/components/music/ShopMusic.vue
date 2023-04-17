@@ -1,12 +1,12 @@
 <template>
   <div class="shop" id="shop">
-    <PaymentVue />
     <div class="shop_content">
       <div class="mobile_header">
         <h1>Shop</h1>
         <p><a href="#contact" class="a-nostyling--2">(skip to contact)</a></p>
       </div>
       <ShoppingCart />
+      <PaymentVue />
       <div class="item" id="state-of-mind-vinyl">
         <div class="item_wrapper">
           <img src="../../assets/images/SoM-cover.jpeg" alt="State of Mind Cover" width="150" />
@@ -98,6 +98,18 @@ function putItemIntoBasket(e: Event) {
   }
 }
 
+.shoppingcart {
+  &_header--mobile {
+    display: none;
+  }
+
+  &_header {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+}
+
 .item {
   border-bottom: 1px solid $clr-blue;
   padding: 1em;
@@ -136,8 +148,9 @@ button {
 @media (max-width: 800px) {
   .shop {
     height: fit-content;
-
     font-size: 1em;
+    display: flex;
+    flex-direction: column;
 
     &_content {
       border: none;

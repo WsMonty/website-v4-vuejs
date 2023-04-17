@@ -5,7 +5,6 @@
     name="ri-shopping-basket-line"
     scale="2.5"
   ></v-icon>
-
   <div v-if="state.cartOpen" class="shoppingcart shoppingcart--open">
     <h1>Shopping cart</h1>
     <template v-for="(item, i) in cart" :key="'item-nr' + i">
@@ -42,19 +41,18 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-
 import { useCartStore } from '@/stores/cart'
 import { storeToRefs } from 'pinia'
 import { loadPaypal } from '@/assets/helpers/loadPaypal'
 import CountryList from '@/assets/helpers/CountryList.vue'
+import { reactive } from 'vue'
 
 const store = useCartStore()
 
+const state = reactive({ cartOpen: false })
+
 const { cart, totalPrice, shippingCost } = storeToRefs(store)
 const { removeFromCart, updateTotalPrice, showPayment, showSuccessMessage, hidePayment } = store
-
-const state = reactive({ cartOpen: false })
 
 function getTotalPrice() {
   const price =
@@ -70,24 +68,6 @@ function getTotalPrice() {
   return price + shippingCost.value + '€'
 }
 
-function handleOpenCart() {
-  const cart = document.querySelector('.shoppingcart')
-  if (state.cartOpen) {
-    cart?.classList.remove('shoppingcart--open')
-    cart?.classList.add('shoppingcart--close')
-    setTimeout(() => {
-      state.cartOpen = false
-    }, 1000)
-    return
-  }
-  if (!state.cartOpen) {
-    cart?.classList.add('shoppingcart--open')
-    cart?.classList.remove('shoppingcart--close')
-    state.cartOpen = true
-    return
-  }
-}
-
 function handleRemoveFromCart(e: Event) {
   const el = e.target as HTMLElement
   const item = el.closest('.shoppingcart_item') as HTMLElement
@@ -100,6 +80,26 @@ function handleToPayment() {
   showPayment()
   loadPaypal(totalPrice.value, shippingCost.value, hidePayment, showSuccessMessage)
   state.cartOpen = false
+}
+
+function handleOpenCart() {
+  const cart = document.querySelector('.shoppingcart')
+
+  if (state.cartOpen) {
+    cart?.classList.remove('shoppingcart--open')
+    cart?.classList.add('shoppingcart--close')
+
+    setTimeout(() => {
+      state.cartOpen = false
+    }, 1000)
+    return
+  }
+  if (!state.cartOpen) {
+    cart?.classList.add('shoppingcart--open')
+    cart?.classList.remove('shoppingcart--close')
+    state.cartOpen = true
+    return
+  }
 }
 </script>
 
@@ -120,6 +120,15 @@ function handleToPayment() {
   overflow-y: auto;
   overflow-x: hidden;
 
+  &--icon {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+
+    color: $clr-blue;
+    z-index: 99;
+  }
+
   h1 {
     border-bottom: 1px solid $clr-blue;
   }
@@ -132,15 +141,6 @@ function handleToPayment() {
   &--close {
     animation: close 1s ease-in-out forwards;
     transform-origin: top right;
-  }
-
-  &--icon {
-    position: absolute;
-    top: 3%;
-    right: 5%;
-
-    color: $clr-blue;
-    z-index: 99;
   }
 
   &_bottom_wrapper {
@@ -226,18 +226,17 @@ form {
     right: 0;
     left: 5%;
 
+    &--icon {
+      top: 1%;
+      left: 35%;
+    }
+
     &--open {
       transform-origin: top left;
     }
 
     &--close {
       transform-origin: top left;
-    }
-
-    &--icon {
-      right: 0;
-      left: 25%;
-      top: 1.2%;
     }
 
     &_item {

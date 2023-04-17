@@ -9,23 +9,24 @@
       id="mobile_navbar"
       v-if="state.mobileNavbar"
     >
-      <li>
+      <li v-if="state.mobileNavbarIcons">
         <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
       </li>
-      <li>
+      <li v-if="state.mobileNavbarIcons">
         <a href="#projects"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
       </li>
-      <li>
+      <li v-if="state.mobileNavbarIcons">
         <a href="#concerts"
           ><v-icon class="navbar--icon" name="bi-ticket-perforated" scale="2.5"
         /></a>
       </li>
-      <li>
+      <li v-if="state.mobileNavbarIcons">
         <a href="#shop"><v-icon class="navbar--icon" name="bi-shop" scale="2.5" /></a>
       </li>
-      <li>
+      <li v-if="state.mobileNavbarIcons">
         <a href="#contact"><v-icon class="navbar--icon" name="bi-mailbox" scale="2.5" /></a>
       </li>
+      <p v-if="state.mobileNavbarIcons" @click="handleCloseMobileNavbar">Close</p>
     </div>
     <button class="music_switch--btn" @click="handleChangeWorld">
       <v-icon class="music_switch--icon" name="co-chevron-double-right" scale="2" />
@@ -54,7 +55,7 @@ const store = useWorldStore()
 const { showDeveloperWorld, hideMusicWorld } = store
 const { developerWorld } = storeToRefs(store)
 
-const state = reactive({ mobileNavbar: false })
+const state = reactive({ mobileNavbar: false, mobileNavbarIcons: false })
 
 function handleChangeWorld() {
   showDeveloperWorld()
@@ -62,8 +63,32 @@ function handleChangeWorld() {
 }
 
 function handleOpenNavbar() {
-  // document.querySelector('.mobile_navbar')?.classList.add('mobile_navbar--active')
-  state.mobileNavbar = state.mobileNavbar ? false : true
+  if (state.mobileNavbar) {
+    document.getElementById('mobile_navbar')?.classList.add('mobile_navbar--close')
+    state.mobileNavbarIcons = false
+
+    setTimeout(() => {
+      state.mobileNavbar = false
+      document.getElementById('mobile_navbar')?.classList.remove('mobile_navbar--close')
+    }, 500)
+    return
+  }
+  if (!state.mobileNavbar) {
+    state.mobileNavbar = true
+    setTimeout(() => {
+      state.mobileNavbarIcons = true
+    }, 500)
+  }
+}
+
+function handleCloseMobileNavbar() {
+  document.getElementById('mobile_navbar')?.classList.add('mobile_navbar--close')
+  state.mobileNavbarIcons = false
+
+  setTimeout(() => {
+    state.mobileNavbar = false
+    document.getElementById('mobile_navbar')?.classList.remove('mobile_navbar--close')
+  }, 500)
 }
 </script>
 
@@ -140,12 +165,38 @@ function handleOpenNavbar() {
   transition: 250ms ease-in-out;
 
   &--active {
-    height: 50%;
+    animation: openMobileNavbar 500ms ease-in-out forwards;
+  }
+
+  &--close {
+    animation: closeMobileNavbar 500ms ease-in-out forwards;
   }
 
   li {
     list-style: none;
     z-index: 1000;
+  }
+
+  p {
+    font-size: 1.3em;
+  }
+}
+
+@keyframes openMobileNavbar {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 55%;
+  }
+}
+
+@keyframes closeMobileNavbar {
+  0% {
+    height: 55%;
+  }
+  100% {
+    height: 0%;
   }
 }
 .navbar--icon {
