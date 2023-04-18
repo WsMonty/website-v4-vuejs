@@ -16,6 +16,7 @@
               stephanie@stephaniebaustert.com
             </a>
           </p>
+          <a href="https://www.stephaniebaustert.com/" target="_blank">www.stephaniebaustert.com</a>
         </div>
         <div class="contact_gilles">
           <h3>Direct Contact</h3>
