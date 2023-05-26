@@ -49,7 +49,7 @@ document.addEventListener('mousemove', (e) => {
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @use './assets/styles/base.scss' as *;
 .music--active {
   animation: slideInMusic 1000ms ease-in-out forwards;
