@@ -4,26 +4,6 @@
     <div class="chroma_content">
       <h1>CHROMA</h1>
       <img src="../../assets/images/chroma-new.jpeg" alt="Chroma Duo" />
-      <p class="chroma_content_text">
-        Schon bei ihrem ersten Zusammentreffen spürten Sebastian Voltz und Gilles Grethen eine
-        starke musikalische Anziehungskraft. Klavier und Gitarre schienen sich komplementär zu
-        ergänzen, mühelos konnten ihre Klangfarben gemischt werden. <br /><br />
-        Klavier und Gitarre sind seltene Duopartner - Gilles Grethen und Sebastian Voltz ziehen
-        daraus ihren Vorteil. Im Zusammenspiel malen sie farbenfroh, verknüpfen ihre Rhythmen zu
-        einem dichten doch immer auch durchsichtigen Gewebe und spielen gekonnt mit der Tatsache,
-        dass beide Instrumente eben die gleichen Fähigkeiten besitzen.
-      </p>
-      <img src="../../assets/images/chroma_page3.jpeg" alt="Presskit Chroma Gilles und Sebastian" />
-      <p class="chroma_content_text">
-        Die Kompositionen der beiden Künstler bewegen sich zwischen ruhigeren, ausgedehnten Passagen
-        und intensiveren, dichten Momenten. In ihrem modernem Jazz steht jedoch immer wieder die
-        Improvisation im Vordergrund, durch welche die Virtuosität der beiden Musiker zu Tage tritt.
-        Hier zeigt sich dann die lange Erfahrung der beiden Musiker im Bereich der klassischen
-        Musik.
-        <br />
-        <br />
-        Kammermusikalisches Zusammenspiel, lebendig, frei und intuitiv.
-      </p>
       <div class="chroma_content_player">
         <div class="chroma_flexwrapper">
           <v-icon
@@ -45,6 +25,27 @@
           <p class="chroma_content_player--label">Gretchen-Frage</p>
         </div>
       </div>
+      <p class="chroma_content_text">
+        Schon bei ihrem ersten Zusammentreffen spürten Sebastian Voltz und Gilles Grethen eine
+        starke musikalische Anziehungskraft. Klavier und Gitarre schienen sich komplementär zu
+        ergänzen, mühelos konnten ihre Klangfarben gemischt werden. <br /><br />
+        Klavier und Gitarre sind seltene Duopartner - Gilles Grethen und Sebastian Voltz ziehen
+        daraus ihren Vorteil. Im Zusammenspiel malen sie farbenfroh, verknüpfen ihre Rhythmen zu
+        einem dichten doch immer auch durchsichtigen Gewebe und spielen gekonnt mit der Tatsache,
+        dass beide Instrumente eben die gleichen Fähigkeiten besitzen.
+      </p>
+      <img src="../../assets/images/chroma_page3.jpeg" alt="Presskit Chroma Gilles und Sebastian" />
+      <p class="chroma_content_text">
+        Die Kompositionen der beiden Künstler bewegen sich zwischen ruhigeren, ausgedehnten Passagen
+        und intensiveren, dichten Momenten. In ihrem modernem Jazz steht jedoch immer wieder die
+        Improvisation im Vordergrund, durch welche die Virtuosität der beiden Musiker zu Tage tritt.
+        Hier zeigt sich dann die lange Erfahrung der beiden Musiker im Bereich der klassischen
+        Musik.
+        <br />
+        <br />
+        Kammermusikalisches Zusammenspiel, lebendig, frei und intuitiv.
+      </p>
+
       <h3>
         Booking: Gilles Grethen <br />
         +352 691954500 <br />
@@ -135,7 +136,16 @@ function musicHandler(option: string) {
     }
 
     h3 {
+      width: 60%;
       margin-block: 1em;
+      border: 1px solid $clr-secondary;
+      border-radius: 20px;
+      padding-block: 1em;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     a {
@@ -156,6 +166,7 @@ function musicHandler(option: string) {
       border: 1px solid $clr-secondary;
       border-radius: 20px;
       padding: 2em;
+      margin-top: 2em;
 
       &--label {
         font-size: 3em;
@@ -171,6 +182,7 @@ function musicHandler(option: string) {
     &_content {
       border: none;
       width: 100%;
+      margin-bottom: 3em;
 
       img {
         width: 100%;
