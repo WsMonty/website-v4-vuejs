@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import { createPersistedStatePlugin } from 'pinia-plugin-persistedstate-2'
 
 import App from './App.vue'
-// import router from './router'
+import router from './router'
 
 import './assets/styles/main.scss'
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
@@ -32,7 +32,9 @@ import {
   BiMailbox,
   CoFacebook,
   CoYoutube,
-  HiSolidMenuAlt1
+  HiSolidMenuAlt1,
+  MdPlaycirclefilled,
+  MdPausecirclefilled
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -60,7 +62,9 @@ addIcons(
   BiMailbox,
   CoFacebook,
   CoYoutube,
-  HiSolidMenuAlt1
+  HiSolidMenuAlt1,
+  MdPlaycirclefilled,
+  MdPausecirclefilled
 )
 
 const app = createApp(App)
@@ -70,6 +74,6 @@ const installPersistedStatePlugin = createPersistedStatePlugin()
 pinia.use((context) => installPersistedStatePlugin(context))
 
 app.use(pinia)
-// app.use(router)
+app.use(router)
 app.component('v-icon', OhVueIcon)
 app.mount('#app')

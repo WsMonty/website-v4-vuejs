@@ -3,33 +3,16 @@
 
   <Suspense>
     <!-- main content -->
-    <MusicView
+    <!-- <MusicView
       :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }"
       ref="containerRef"
-    />
+    /> -->
+    <RouterView />
 
     <!-- loading state -->
     <template #fallback> Loading... </template>
   </Suspense>
-  <ul class="navbar" :class="{ hidden: developerWorld }">
-    <li>
-      <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
-    </li>
-    <li>
-      <a href="#projects"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
-    </li>
-    <li>
-      <a href="#concerts"
-        ><v-icon class="navbar--icon" name="bi-ticket-perforated" scale="2.5"
-      /></a>
-    </li>
-    <li>
-      <a href="#shop"><v-icon class="navbar--icon" name="bi-shop" scale="2.5" /></a>
-    </li>
-    <li>
-      <a href="#contact"><v-icon class="navbar--icon" name="bi-mailbox" scale="2.5" /></a>
-    </li>
-  </ul>
+
   <DeveloperView
     class="developer"
     :class="{ 'developer--active': developerWorld, 'developer--close': !developerWorld }"
@@ -38,7 +21,7 @@
 
 <script setup lang="ts">
 // import { reactive } from 'vue'
-import MusicView from './views/MusicView.vue'
+
 import DeveloperView from './views/DeveloperView.vue'
 import { useWorldStore } from './stores/world'
 import { storeToRefs } from 'pinia'
@@ -48,7 +31,7 @@ import { reactive } from 'vue'
 
 const store = useWorldStore()
 
-const { musicWorld, developerWorld } = storeToRefs(store)
+const { developerWorld } = storeToRefs(store)
 
 const state = reactive({ x: '', y: '', xN: 0, yN: 0 })
 
@@ -119,36 +102,7 @@ document.addEventListener('mousemove', (e) => {
     transform: translateX(-100%);
   }
 }
-.navbar {
-  list-style: none;
-  height: 70%;
-  width: 5%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4em;
-  padding: 0;
 
-  background-color: $clr-primary;
-
-  position: fixed;
-  left: 2%;
-  top: 15%;
-  border-radius: 30px;
-
-  z-index: 99;
-
-  &--icon {
-    color: $clr-secondary;
-
-    transition: color 150ms ease-in-out;
-
-    &:hover {
-      color: $clr-blue;
-    }
-  }
-}
 .dot {
   position: absolute;
   background-color: rgba(29, 29, 104, 0.747);

@@ -1,5 +1,24 @@
 <template>
   <div class="music">
+    <ul class="navbar" :class="{ hidden: developerWorld }">
+      <li>
+        <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
+      </li>
+      <li>
+        <a href="#projects"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
+      </li>
+      <li>
+        <a href="#concerts"
+          ><v-icon class="navbar--icon" name="bi-ticket-perforated" scale="2.5"
+        /></a>
+      </li>
+      <li>
+        <a href="#shop"><v-icon class="navbar--icon" name="bi-shop" scale="2.5" /></a>
+      </li>
+      <li>
+        <a href="#contact"><v-icon class="navbar--icon" name="bi-mailbox" scale="2.5" /></a>
+      </li>
+    </ul>
     <div @click="handleOpenNavbar" class="hamburger" :class="{ hidden: developerWorld }">
       <v-icon name="hi-solid-menu-alt-1" scale="2.5"></v-icon>
 
@@ -144,6 +163,37 @@ function handleCloseMobileNavbar() {
   }
 }
 
+.navbar {
+  list-style: none;
+  height: 70%;
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4em;
+  padding: 0;
+
+  background-color: $clr-primary;
+
+  position: fixed;
+  left: 2%;
+  top: 15%;
+  border-radius: 30px;
+
+  z-index: 99;
+
+  &--icon {
+    color: $clr-secondary;
+
+    transition: color 150ms ease-in-out;
+
+    &:hover {
+      color: $clr-blue;
+    }
+  }
+}
+
 .hamburger {
   display: none;
 }
@@ -202,9 +252,9 @@ function handleCloseMobileNavbar() {
     height: 0;
   }
 }
-.navbar--icon {
-  color: $clr-primary;
-}
+// .navbar--icon {
+//   color: $clr-primary;
+// }
 
 @media (max-width: 800px) {
   .hamburger {
