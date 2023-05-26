@@ -55,9 +55,11 @@
 </template>
 <script setup lang="ts">
 import { reactive } from 'vue'
+import glareSrc from '../../assets/music/glare.mp3'
+import gretchenSrc from '../../assets/music/gretchen-frage.mp3'
 
-const glare = new Audio('src/assets/music/glare.mp3')
-const gretchen = new Audio('src/assets/music/gretchen-frage.mp3')
+const glare = new Audio(glareSrc)
+const gretchen = new Audio(gretchenSrc)
 
 const isPlaying = reactive({ current: '' })
 
