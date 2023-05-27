@@ -1,6 +1,6 @@
 <template>
   <div class="dot" ref="dotRef" :style="{ top: state.y, left: state.x }"></div>
-  <ul class="navbar" :class="{ hidden: developerWorld }">
+  <ul v-if="$route.name !== 'chroma'" class="navbar" :class="{ hidden: developerWorld }">
     <li>
       <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
     </li>
