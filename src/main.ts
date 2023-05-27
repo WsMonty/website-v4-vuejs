@@ -34,7 +34,9 @@ import {
   CoYoutube,
   HiSolidMenuAlt1,
   MdPlaycirclefilled,
-  MdPausecirclefilled
+  MdPausecirclefilled,
+  MdMusicnote,
+  MdMusicoffSharp
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -64,7 +66,9 @@ addIcons(
   CoYoutube,
   HiSolidMenuAlt1,
   MdPlaycirclefilled,
-  MdPausecirclefilled
+  MdPausecirclefilled,
+  MdMusicnote,
+  MdMusicoffSharp
 )
 
 const app = createApp(App)

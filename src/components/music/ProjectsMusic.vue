@@ -111,12 +111,14 @@
             fabric, skillfully playing with the fact that both instruments possess the same
             capabilities.
           </p>
-          <div class="img-wrapper">
-            <img src="../../assets/images/chroma.jpg" alt="Collage of CHROMA" width="500" />
-            <div class="project_overlay project_overlay--chroma">
-              More info available very soon!
+          <RouterLink to="/chroma" target="_blank">
+            <div class="img-wrapper">
+              <img src="../../assets/images/chroma.jpg" alt="Collage of CHROMA" width="500" />
+              <div class="project_overlay project_overlay--chroma">
+                <h3>Click here for more info!</h3>
+              </div>
             </div>
-          </div>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -124,6 +126,8 @@
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
 function handleClickImg(opt: string) {
   switch (opt) {
     case 'jem':

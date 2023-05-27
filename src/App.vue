@@ -4,9 +4,9 @@
   <Suspense>
     <!-- main content -->
     <!-- <MusicView
-      :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }"
-      ref="containerRef"
-    /> -->
+    :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }"
+    ref="containerRef"
+  /> -->
     <RouterView />
 
     <!-- loading state -->
@@ -17,23 +17,28 @@
     class="developer"
     :class="{ 'developer--active': developerWorld, 'developer--close': !developerWorld }"
   />
+  <div v-if="$route.name !== 'chroma'" class="player">
+    <v-icon
+      :name="state.isPlaying ? 'md-musicnote' : 'md-musicoff-sharp'"
+      @click="startMusicHandler"
+      scale="3"
+    />
+    <h2>listen to some music</h2>
+  </div>
 </template>
 
 <script setup lang="ts">
-// import { reactive } from 'vue'
-
 import DeveloperView from './views/DeveloperView.vue'
 import { useWorldStore } from './stores/world'
 import { storeToRefs } from 'pinia'
 import { reactive } from 'vue'
-
-// const state = reactive({})
+import stateOfMind from './assets/music/state-of-mind.mp3'
 
 const store = useWorldStore()
 
-const { developerWorld } = storeToRefs(store)
+const { developerWorld, musicWorld } = storeToRefs(store)
 
-const state = reactive({ x: '', y: '', xN: 0, yN: 0 })
+const state = reactive({ x: '', y: '', xN: 0, yN: 0, isPlaying: false })
 
 function updateDotPosition(event: MouseEvent) {
   state.xN = event.clientX
@@ -47,10 +52,24 @@ document.addEventListener('mousemove', (e) => {
   updateDotPosition(e)
   // updateDotColor()
 })
+
+const music = new Audio(stateOfMind)
+
+function startMusicHandler() {
+  if (state.isPlaying) {
+    music.pause()
+    state.isPlaying = false
+    return
+  }
+  music.play()
+  state.isPlaying = true
+}
 </script>
 
 <style lang="scss">
 @use './assets/styles/base.scss' as *;
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
 .music--active {
   animation: slideInMusic 1000ms ease-in-out forwards;
 }
@@ -65,6 +84,22 @@ document.addEventListener('mousemove', (e) => {
 
 .developer--active {
   animation: slideInDev 1000ms ease-in-out forwards;
+}
+
+.player {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  color: $clr-blue;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-family: 'Amatic SC', 'Helvetica Neue', sans-serif;
+  }
 }
 
 @keyframes slideOutMusic {
@@ -122,6 +157,12 @@ document.addEventListener('mousemove', (e) => {
 @media (max-width: 800px) {
   .navbar {
     visibility: hidden;
+  }
+
+  .player {
+    top: 0;
+    transform: scale(0.75);
+    left: 0%;
   }
 }
 @media (max-height: 720px) {

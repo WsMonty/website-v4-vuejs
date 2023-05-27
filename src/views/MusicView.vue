@@ -1,5 +1,6 @@
 <template>
-  <div class="music">
+  <div class="music" :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }">
+    <div v-if="musicWorld" class="music_mobile_topbar"></div>
     <ul class="navbar" :class="{ hidden: developerWorld }">
       <li>
         <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
@@ -48,7 +49,7 @@
         <p v-if="state.mobileNavbarIcons" @click="handleCloseMobileNavbar">Close</p>
       </div>
     </div>
-    <button class="music_switch--btn" @click="handleChangeWorld">
+    <button v-if="!developerWorld" class="music_switch--btn" @click="handleChangeWorld">
       <v-icon class="music_switch--icon" name="co-chevron-double-right" scale="2" />
     </button>
     <HomeMusic />
@@ -73,7 +74,7 @@ import { reactive } from 'vue'
 
 const store = useWorldStore()
 const { showDeveloperWorld, hideMusicWorld } = store
-const { developerWorld } = storeToRefs(store)
+const { developerWorld, musicWorld } = storeToRefs(store)
 
 const state = reactive({ mobileNavbar: false, mobileNavbarIcons: false })
 
@@ -235,6 +236,10 @@ function handleCloseMobileNavbar() {
   }
 }
 
+.music_mobile_topbar {
+  display: none;
+}
+
 @keyframes openMobileNavbar {
   0% {
     height: 0;
@@ -262,9 +267,20 @@ function handleCloseMobileNavbar() {
     width: fit-content;
     color: $clr-blue;
     position: sticky;
-    top: 3%;
+    top: 2.5%;
     margin-left: 3%;
     z-index: 999;
+  }
+
+  .music_mobile_topbar {
+    display: block;
+    width: 100%;
+    height: 10%;
+    background-color: $clr-primary;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 99;
   }
 }
 </style>

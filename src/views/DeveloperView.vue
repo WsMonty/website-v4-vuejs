@@ -1,5 +1,6 @@
 <template>
   <div class="developer">
+    <div v-if="developerWorld" class="music_mobile_topbar"></div>
     <button class="developer_switch--btn" @click="handleChangeWorld">
       <v-icon class="developer_switch--icon" name="co-chevron-double-left" scale="2" />
     </button>
@@ -14,8 +15,10 @@ import { useWorldStore } from '@/stores/world'
 import HomeDeveloper from '@/components/developer/HomeDeveloper.vue'
 import SkillsDeveloper from '@/components/developer/SkillsDeveloper.vue'
 import ContactDeveloper from '@/components/developer/ContactDeveloper.vue'
+import { storeToRefs } from 'pinia'
 
 const store = useWorldStore()
+const { developerWorld } = storeToRefs(store)
 const { hideDeveloperWorld, showMusicWorld } = store
 
 function handleChangeWorld() {
@@ -75,6 +78,22 @@ function handleChangeWorld() {
     100% {
       transform: translateX(0);
     }
+  }
+}
+.music_mobile_topbar {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .music_mobile_topbar {
+    display: block;
+    width: 100%;
+    height: 10%;
+    background-color: $clr-secondary;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 99;
   }
 }
 </style>
