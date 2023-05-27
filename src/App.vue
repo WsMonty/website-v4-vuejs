@@ -1,5 +1,24 @@
 <template>
   <div class="dot" ref="dotRef" :style="{ top: state.y, left: state.x }"></div>
+  <ul class="navbar" :class="{ hidden: developerWorld }">
+    <li>
+      <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
+    </li>
+    <li>
+      <a href="#projects"> <v-icon class="navbar--icon" name="la-music-solid" scale="2.5" /></a>
+    </li>
+    <li>
+      <a href="#concerts"
+        ><v-icon class="navbar--icon" name="bi-ticket-perforated" scale="2.5"
+      /></a>
+    </li>
+    <li>
+      <a href="#shop"><v-icon class="navbar--icon" name="bi-shop" scale="2.5" /></a>
+    </li>
+    <li>
+      <a href="#contact"><v-icon class="navbar--icon" name="bi-mailbox" scale="2.5" /></a>
+    </li>
+  </ul>
 
   <Suspense>
     <!-- main content -->
@@ -7,7 +26,7 @@
     :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }"
     ref="containerRef"
   /> -->
-    <RouterView />
+    <RouterView class="routerView" />
 
     <!-- loading state -->
     <template #fallback> Loading... </template>
@@ -36,7 +55,7 @@ import stateOfMind from './assets/music/state-of-mind.mp3'
 
 const store = useWorldStore()
 
-const { developerWorld, musicWorld } = storeToRefs(store)
+const { developerWorld } = storeToRefs(store)
 
 const state = reactive({ x: '', y: '', xN: 0, yN: 0, isPlaying: false })
 
@@ -50,7 +69,6 @@ function updateDotPosition(event: MouseEvent) {
 // Add event listener to update the dot and afterglow positions on mousemove
 document.addEventListener('mousemove', (e) => {
   updateDotPosition(e)
-  // updateDotColor()
 })
 
 const music = new Audio(stateOfMind)
@@ -86,12 +104,44 @@ function startMusicHandler() {
   animation: slideInDev 1000ms ease-in-out forwards;
 }
 
+.navbar {
+  list-style: none;
+  height: 70%;
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4em;
+  padding: 0;
+
+  background-color: $clr-primary;
+
+  position: fixed;
+  left: 2%;
+  top: 15%;
+  border-radius: 30px;
+
+  z-index: 99;
+
+  &--icon {
+    color: $clr-secondary;
+
+    transition: color 150ms ease-in-out;
+
+    &:hover {
+      color: $clr-blue;
+    }
+  }
+}
+
 .player {
   position: fixed;
   bottom: 1%;
   right: 1%;
   color: $clr-blue;
   height: fit-content;
+  width: fit-content;
 
   display: flex;
   flex-direction: column;
@@ -148,23 +198,6 @@ function startMusicHandler() {
   pointer-events: none;
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .dot {
-    visibility: hidden;
-  }
-}
-
-@media (max-width: 800px) {
-  .navbar {
-    visibility: hidden;
-  }
-
-  .player {
-    top: 0;
-    transform: scale(0.75);
-    left: 0%;
-  }
-}
 @media (max-height: 720px) {
   .navbar {
     height: 80%;
@@ -189,6 +222,24 @@ function startMusicHandler() {
 @media (max-width: 1200px) {
   .navbar {
     width: 7%;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .dot {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    visibility: hidden;
+  }
+
+  .player {
+    top: 0;
+    transform: scale(0.75);
+    left: 30%;
   }
 }
 </style>
