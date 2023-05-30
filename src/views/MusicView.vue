@@ -52,7 +52,7 @@ import ConcertsMusic from '../components/music/ConcertsMusic.vue'
 import ShopMusic from '../components/music/ShopMusic.vue'
 import ContactMusic from '@/components/music/ContactMusic.vue'
 import { storeToRefs } from 'pinia'
-import { reactive } from 'vue'
+import { onMounted, reactive, watchEffect } from 'vue'
 
 const store = useWorldStore()
 const { showDeveloperWorld, hideMusicWorld } = store
@@ -93,6 +93,27 @@ function handleCloseMobileNavbar() {
     document.getElementById('mobile_navbar')?.classList.remove('mobile_navbar--close')
   }, 500)
 }
+
+const scrollToElement = (elementId: string) => {
+  const element = document.getElementById(elementId)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+onMounted(() => {
+  const targetElementId = window.location.hash.slice(1) // Remove the '#' from the hash
+  if (targetElementId) {
+    scrollToElement(targetElementId)
+  }
+})
+
+watchEffect(() => {
+  const targetElementId = window.location.hash.slice(1) // Remove the '#' from the hash
+  if (targetElementId) {
+    scrollToElement(targetElementId)
+  }
+})
 </script>
 
 <style scoped lang="scss">
