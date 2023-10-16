@@ -1,5 +1,3 @@
-# New Version of my Website (work in progress)
+# Gilles Grethen's Website
 
-    This will be programmed in Vue.js (with Typescript)
-
-    the current version can be visited at: https://www.gillesgrethen.com
+### visit live version on [gillesgrethen.com](https://www.gillesgrethen.com)

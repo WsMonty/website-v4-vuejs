@@ -2,8 +2,24 @@
   <div class="chroma">
     <!-- <a href="/"></a> -->
     <div class="chroma_content">
+      <div class="chroma_localization">
+        <h2
+          :class="locale.current === 'de' && 'chroma_localization--active'"
+          @click="() => (locale.current = 'de')"
+        >
+          DE
+        </h2>
+        <p>|</p>
+        <h2
+          :class="locale.current === 'en' && 'chroma_localization--active'"
+          @click="() => (locale.current = 'en')"
+        >
+          EN
+        </h2>
+      </div>
       <h1>CHROMA</h1>
       <img src="../../assets/images/chroma-new.jpeg" alt="Chroma Duo" />
+      <p class="chroma_content_text">{{ localizedTexts[locale.current].news }}</p>
       <div class="chroma_content_player">
         <div class="chroma_flexwrapper">
           <v-icon
@@ -26,24 +42,22 @@
         </div>
       </div>
       <p class="chroma_content_text">
-        Schon bei ihrem ersten Zusammentreffen spürten Sebastian Voltz und Gilles Grethen eine
-        starke musikalische Anziehungskraft. Klavier und Gitarre schienen sich komplementär zu
-        ergänzen, mühelos konnten ihre Klangfarben gemischt werden. <br /><br />
-        Klavier und Gitarre sind seltene Duopartner - Gilles Grethen und Sebastian Voltz ziehen
-        daraus ihren Vorteil. Im Zusammenspiel malen sie farbenfroh, verknüpfen ihre Rhythmen zu
-        einem dichten doch immer auch durchsichtigen Gewebe und spielen gekonnt mit der Tatsache,
-        dass beide Instrumente eben die gleichen Fähigkeiten besitzen.
+        {{ localizedTexts[locale.current].first }} <br /><br />
+        {{ localizedTexts[locale.current].second }}
       </p>
-      <img src="../../assets/images/chroma_page3.jpeg" alt="Presskit Chroma Gilles und Sebastian" />
+      <img
+        :src="
+          locale.current === 'de'
+            ? 'src/assets/images/chroma_page3_de.jpeg'
+            : 'src/assets/images/chroma_page3_en.jpeg'
+        "
+        alt="Presskit Chroma Gilles und Sebastian"
+      />
       <p class="chroma_content_text">
-        Die Kompositionen der beiden Künstler bewegen sich zwischen ruhigeren, ausgedehnten Passagen
-        und intensiveren, dichten Momenten. In ihrem modernem Jazz steht jedoch immer wieder die
-        Improvisation im Vordergrund, durch welche die Virtuosität der beiden Musiker zu Tage tritt.
-        Hier zeigt sich dann die lange Erfahrung der beiden Musiker im Bereich der klassischen
-        Musik.
+        {{ localizedTexts[locale.current].third }}
         <br />
         <br />
-        Kammermusikalisches Zusammenspiel, lebendig, frei und intuitiv.
+        {{ localizedTexts[locale.current].fourth }}
       </p>
 
       <h3>
@@ -58,11 +72,14 @@
 import { reactive } from 'vue'
 import glareSrc from '../../assets/music/glare.mp3'
 import gretchenSrc from '../../assets/music/gretchen-frage.mp3'
+import { localizedTexts } from '../../assets/chroma/texts'
 
 const glare = new Audio(glareSrc)
 const gretchen = new Audio(gretchenSrc)
 
 const isPlaying = reactive({ current: '' })
+
+const locale = reactive({ current: 'en' })
 
 function musicHandler(option: string) {
   if (option === 'glare') {
@@ -104,6 +121,28 @@ function musicHandler(option: string) {
   font-family: 'Helvetica Neue', sans-serif;
 
   overflow: auto;
+
+  position: relative;
+
+  &_localization {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    right: 5%;
+    top: 1%;
+
+    h2 {
+      transition: 150ms ease-in-out;
+      &:hover {
+        color: $clr-chroma;
+      }
+    }
+
+    &--active {
+      text-decoration: underline;
+    }
+  }
 
   &_flexwrapper {
     display: flex;
