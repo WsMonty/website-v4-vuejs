@@ -46,11 +46,13 @@
         {{ localizedTexts[locale.current].second }}
       </p>
       <img
-        :src="
-          locale.current === 'de'
-            ? 'src/assets/images/chroma_page3_de.jpeg'
-            : 'src/assets/images/chroma_page3_en.jpeg'
-        "
+        v-if="locale.current === 'de'"
+        src="../../assets/images/chroma_page3_de.jpeg"
+        alt="Presskit Chroma Gilles und Sebastian"
+      />
+      <img
+        v-if="locale.current === 'en'"
+        src="../../assets/images/chroma_page3_en.jpeg"
         alt="Presskit Chroma Gilles und Sebastian"
       />
       <p class="chroma_content_text">
