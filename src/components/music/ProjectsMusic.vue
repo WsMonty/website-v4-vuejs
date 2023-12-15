@@ -72,34 +72,6 @@
       </div>
       <hr />
       <div class="project">
-        <h2 class="hover" @click="handleClickImg('jem')">JEM</h2>
-        <div class="flex-wrapper">
-          <div class="img-wrapper">
-            <img
-              src="../../assets/images/jem.jpg"
-              alt="JEM inside Castle"
-              width="500"
-              @click="handleClickImg('jem')"
-            />
-            <div class="project_overlay project_overlay--jem">
-              <h3>Click here for more info!</h3>
-            </div>
-          </div>
-          <p>
-            "KlezFire" means joy of life, top-notch entertainment, and an enthusiastic audience!
-            Once again, Helmut Eisel, with his "Speaking Clarinet," skillfully bridges styles and
-            cultures with a cheerful disposition. Through his music, he tells stories to his
-            audience - cheerful, melancholic, irresistibly seductive. And all of this is done at the
-            highest level of musical performance! The program "KlezFire" was co-developed by Michael
-            Marx, the legendary guitarist and co-founder of the group. His untimely death in August
-            2022 has deeply affected us all. But the show goes on! Through his music, Michael Marx
-            remains present in the performances of the trio, and Gilles Grethen has found a worthy
-            successor.
-          </p>
-        </div>
-      </div>
-      <hr />
-      <div class="project">
         <h2>CHROMA</h2>
         <div class="flex-wrapper">
           <p>
