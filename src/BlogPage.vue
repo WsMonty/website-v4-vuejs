@@ -2,12 +2,17 @@
   <div class="blog">
     <h1>Gilles Grethen's Story Time</h1>
     <div class="blogs">
-      <article v-for="(blog, index) in blogPosts">
+      <article v-for="(blog, index) in blogPosts" :key="blog.date">
         <h2>{{ blog.title }}</h2>
         <p class="date">{{ 'Published on ' + dateFormatter(blog.date) + ' by ' + blog.author }}</p>
         <br />
-        <div v-for="par in blog.article.json.content">
-          <p class="text" v-for="p in par.content" v-html="renderTextWithLineBreaks(p.value)"></p>
+        <div v-for="(par, index) in blog.article.json.content" :key="'Paragraph No.' + index">
+          <p
+            class="text"
+            v-for="(p, index) in par.content"
+            v-html="renderTextWithLineBreaks(p.value)"
+            :key="'Small paragraph No.' + index"
+          ></p>
           <br />
         </div>
         <hr v-if="index != blogPosts.length - 1" />
