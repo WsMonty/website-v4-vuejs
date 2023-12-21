@@ -123,4 +123,23 @@ article {
   width: 70%;
   padding: 2em 2em 0 2em;
 }
+
+@media (max-width: 800px) {
+  .blog {
+    font-size: 1rem;
+  }
+
+  .blogs {
+    width: 85%;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  article {
+    width: 100%;
+    padding: 0;
+  }
+}
 </style>
