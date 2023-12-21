@@ -131,6 +131,7 @@ article {
 
   .blogs {
     width: 85%;
+    margin-bottom: 5em;
   }
 
   h2 {
