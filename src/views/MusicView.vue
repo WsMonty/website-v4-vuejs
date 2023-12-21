@@ -1,10 +1,15 @@
 <template>
-  <div class="music" :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }">
-    <div v-if="musicWorld" class="music_mobile_topbar"></div>
+  <div class="music">
+    <div v-if="$route.name === 'Music'" class="music_mobile_topbar"></div>
+    <v-icon
+      class="music_switch--icon"
+      name="co-chevron-double-right"
+      scale="2"
+      @click="handleChangePage"
+    />
 
-    <div @click="handleOpenNavbar" class="hamburger" :class="{ hidden: developerWorld }">
+    <div @click="handleOpenNavbar" class="hamburger">
       <v-icon name="hi-solid-menu-alt-1" scale="2.5"></v-icon>
-
       <div
         class="mobile_navbar"
         :class="{ 'mobile_navbar--active': state.mobileNavbar }"
@@ -31,9 +36,7 @@
         <p v-if="state.mobileNavbarIcons" @click="handleCloseMobileNavbar">Close</p>
       </div>
     </div>
-    <button v-if="!developerWorld" class="music_switch--btn" @click="handleChangeWorld">
-      <v-icon class="music_switch--icon" name="co-chevron-double-right" scale="2" />
-    </button>
+
     <HomeMusic />
     <NewsMusic />
     <ProjectsMusic />
@@ -44,25 +47,20 @@
 </template>
 
 <script setup lang="ts">
-import { useWorldStore } from '@/stores/world'
 import HomeMusic from '@/components/music/HomeMusic.vue'
 import NewsMusic from '../components/music/NewsMusic.vue'
 import ProjectsMusic from '../components/music/ProjectsMusic.vue'
 import ConcertsMusic from '../components/music/ConcertsMusic.vue'
 import ShopMusic from '../components/music/ShopMusic.vue'
 import ContactMusic from '@/components/music/ContactMusic.vue'
-import { storeToRefs } from 'pinia'
-import { onMounted, reactive, watchEffect } from 'vue'
 
-const store = useWorldStore()
-const { showDeveloperWorld, hideMusicWorld } = store
-const { developerWorld, musicWorld } = storeToRefs(store)
+import { onMounted, reactive, watchEffect } from 'vue'
+import router from '@/router'
 
 const state = reactive({ mobileNavbar: false, mobileNavbarIcons: false })
 
-function handleChangeWorld() {
-  showDeveloperWorld()
-  hideMusicWorld()
+function handleChangePage() {
+  router.push('/developer')
 }
 
 function handleOpenNavbar() {
@@ -129,22 +127,18 @@ watchEffect(() => {
   scroll-snap-type: y proximity;
 
   &_switch {
-    &--btn {
-      background-color: transparent;
-      border: none;
-      width: 4em;
-      position: sticky;
-      top: 3%;
-      float: right;
-      margin-right: 8%;
-      z-index: 100;
-    }
-
     &--icon {
       color: $clr-blue;
       z-index: 100;
       cursor: pointer;
       animation: wiggle 2000ms cubic-bezier(0, 0.51, 0.98, 1.43) infinite;
+
+      width: 4em;
+      position: sticky;
+      top: 3%;
+      float: right;
+      margin-right: 2%;
+      z-index: 100;
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="dot" ref="dotRef" :style="{ top: state.y, left: state.x }"></div>
-  <ul v-if="$route.name !== 'chroma'" class="navbar" :class="{ hidden: developerWorld }">
+  <ul v-if="$route.name == 'Music'" class="navbar">
     <li>
       <a href="#news"><v-icon class="navbar--icon" name="co-newspaper" scale="2.5" /></a>
     </li>
@@ -21,22 +21,13 @@
   </ul>
 
   <Suspense>
-    <!-- main content -->
-    <!-- <MusicView
-    :class="{ 'music--active': musicWorld, 'music--close': !musicWorld }"
-    ref="containerRef"
-  /> -->
-    <RouterView class="routerView" />
+    <RouterView v-slot="{ Component }"> </RouterView>
 
     <!-- loading state -->
     <template #fallback> Loading... </template>
   </Suspense>
 
-  <DeveloperView
-    class="developer"
-    :class="{ 'developer--active': developerWorld, 'developer--close': !developerWorld }"
-  />
-  <div v-if="$route.name !== 'chroma'" class="player">
+  <div v-if="$route.name !== 'Chroma'" class="player">
     <v-icon
       :name="state.isPlaying ? 'md-musicnote' : 'md-musicoff-sharp'"
       @click="startMusicHandler"
@@ -47,15 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import DeveloperView from './views/DeveloperView.vue'
-import { useWorldStore } from './stores/world'
-import { storeToRefs } from 'pinia'
 import { reactive } from 'vue'
 import stateOfMind from './assets/music/state-of-mind.mp3'
-
-const store = useWorldStore()
-
-const { developerWorld } = storeToRefs(store)
 
 const state = reactive({ x: '', y: '', xN: 0, yN: 0, isPlaying: false })
 
@@ -88,20 +72,8 @@ function startMusicHandler() {
 @use './assets/styles/base.scss' as *;
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
-.music--active {
-  animation: slideInMusic 1000ms ease-in-out forwards;
-}
-
-.music--close {
-  animation: slideOutMusic 1000ms ease-in-out forwards;
-}
-
-.developer--close {
-  animation: slideOutDev 1000ms ease-in-out forwards;
-}
-
-.developer--active {
-  animation: slideInDev 1000ms ease-in-out forwards;
+.hidden {
+  display: none;
 }
 
 .navbar {
@@ -237,9 +209,7 @@ function startMusicHandler() {
   }
 
   .player {
-    top: 0;
-    transform: scale(0.75);
-    left: 30%;
+    visibility: hidden;
   }
 }
 </style>

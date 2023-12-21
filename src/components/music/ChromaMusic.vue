@@ -157,8 +157,8 @@ function musicHandler(option: string) {
   &_content {
     width: 80%;
     height: fit-content;
-    border-radius: 20px;
-    border: 1px solid $clr-secondary;
+    // border-radius: 20px;
+    // border: 1px solid $clr-secondary;
 
     padding: 1em;
 
