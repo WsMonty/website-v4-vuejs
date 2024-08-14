@@ -27,7 +27,10 @@
     <template #fallback> Loading... </template>
   </Suspense>
 
-  <div v-if="$route.name !== 'Chroma'" class="player">
+  <div
+    v-if="$route.name !== 'Chroma' && $route.name !== 'Cashflowing Privacy Policy'"
+    class="player"
+  >
     <v-icon
       :name="state.isPlaying ? 'md-musicnote' : 'md-musicoff-sharp'"
       @click="startMusicHandler"

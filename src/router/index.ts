@@ -3,17 +3,18 @@ import ChromaMusic from '@/components/music/ChromaMusic.vue'
 import MusicView from '@/views/MusicView.vue'
 import BlogPage from '@/BlogPage.vue'
 import DeveloperView from '@/views/DeveloperView.vue'
+import CashflowingPrivacyPolicy from '@/CashflowingPrivacyPolicy.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Music',
-    component: MusicView,
+    component: MusicView
   },
   {
     path: '/developer',
     name: 'Developer',
-    component: DeveloperView,
+    component: DeveloperView
   },
   {
     path: '/chroma',
@@ -21,11 +22,15 @@ const routes = [
     component: ChromaMusic
   },
   {
-    path: '/blog',
-    name:'Blog',
-    component: BlogPage
+    path: '/cashflowing',
+    name: 'Cashflowing Privacy Policy',
+    component: CashflowingPrivacyPolicy
   },
-
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: BlogPage
+  }
 ]
 
 const router = createRouter({ history: createWebHistory(), routes })
