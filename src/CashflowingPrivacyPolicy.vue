@@ -43,7 +43,7 @@
     </div>
   </div>
 </template>
-<script></script>
+
 <style lang="scss" scoped>
 .cashflowing_privacy_policy_container {
   width: 100vw;
