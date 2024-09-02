@@ -47,12 +47,12 @@
       </p>
       <img
         v-if="locale.current === 'de'"
-        src="../../assets/images/chroma_page3_de.jpeg"
+        src="../../assets/images/chroma_page3_de.png"
         alt="Presskit Chroma Gilles und Sebastian"
       />
       <img
         v-if="locale.current === 'en'"
-        src="../../assets/images/chroma_page3_en.jpeg"
+        src="../../assets/images/chroma_page3_en.png"
         alt="Presskit Chroma Gilles und Sebastian"
       />
       <p class="chroma_content_text">
