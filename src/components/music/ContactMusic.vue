@@ -23,12 +23,12 @@
           <h4>Gilles Grethen</h4>
           <p>
             <a
-              href="mailto:gilles@gillesgrethen.com"
+              href="mailto:grethen.gilles@gmail.com"
               class="mail_link"
               target="_blank"
               rel="noreferrer"
             >
-              gilles@gillesgrethen.com
+              grethen.gilles@gmail.com
             </a>
           </p>
         </div>
